@@ -8,6 +8,6 @@
     <string name="have_account">Have Account?</string>
     <string name="login">Login</string>
     <string name="no_have_account">No have account?</string>
-    <string name="register">Register</string>
     <string name="remember_me">Remember Me</string>
+    <string name="telphone_number">Telphone Number</string>
 </resources>
