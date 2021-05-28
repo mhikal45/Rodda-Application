@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="15dp"
-    tools:context=".um.login.LoginActivity">
+    tools:context=".um.register.RegistrerFormActivity">
 
     <ImageView
         android:id="@+id/img_rodda"
@@ -16,7 +16,7 @@
         android:layout_marginEnd="15dp"
         android:src="@drawable/logo_main"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,17 +25,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="206dp" />
+        app:layout_constraintGuide_begin="171dp" />
+
+    <EditText
+        android:id="@+id/edit_realname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="@string/full_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline" />
 
     <EditText
         android:id="@+id/edit_username"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:inputType="text"
+        android:layout_marginTop="20dp"
         android:hint="@string/username"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline" />
+        app:layout_constraintTop_toBottomOf="@id/edit_realname" />
+
+    <EditText
+        android:id="@+id/edit_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="@string/email_address"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_username" />
 
     <EditText
         android:id="@+id/edit_password"
@@ -46,50 +68,41 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_username" />
+        app:layout_constraintTop_toBottomOf="@id/edit_email" />
 
-    <CheckBox
-        android:id="@+id/cb_rememberMe"
+    <Button
+        android:id="@+id/btn_register"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/remember_me"
-        app:layout_constraintEnd_toSEndOf="parent"
+        android:backgroundTint="@color/orange"
+        android:textColor="@color/white"
+        android:text="@string/register"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_password" />
 
-
-    <Button
-        android:id="@+id/btn_login"
+    <TextView
+        android:id="@+id/tv_haveAcc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:backgroundTint="@color/orange"
-        android:textColor="@color/white"
-        android:layout_marginTop="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="15dp"
+        android:text="@string/have_account"
+        app:layout_constraintEnd_toStartOf="@id/tv_login"
+        android:gravity="end"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cb_rememberMe" />
+        app:layout_constraintTop_toBottomOf="@id/btn_register" />
 
     <TextView
-        android:id="@+id/tv_haventAcc"
+        android:id="@+id/tv_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/no_have_account"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
-
-    <TextView
-        android:id="@+id/tv_regis"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/register"
-        android:textColor="@color/blue"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/login"
+        android:textColor="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_haventAcc"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
-
-
+        app:layout_constraintStart_toEndOf="@id/tv_haveAcc"
+        app:layout_constraintTop_toBottomOf="@id/btn_register" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
