@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Detail Module</string>
+    <string name="lokasi">Lokasi</string>
+    <string name="catatan">Catatan</string>
+    <string name="gambar_jalanan_yang_rusak">Gambar jalanan yang rusak</string>
+    <string name="kirimkan_laporan">Kirimkan Laporan</string>
 </resources>
