@@ -1,3 +1,4 @@
 rootProject.name = "Rodda Application"
 include ':app'
 include ':detail_module'
+include ':usermg'
