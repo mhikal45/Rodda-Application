@@ -1,4 +1,4 @@
-package com.rodda.detail_module
+package com.rodda.detailmodule
 
 import org.junit.Test
 

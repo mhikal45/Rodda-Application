@@ -35,7 +35,6 @@ android {
     buildFeatures {
         viewBinding true
     }
-    dynamicFeatures = [':detail_module']
 }
 
 dependencies {

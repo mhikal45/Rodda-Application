@@ -11,4 +11,5 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="title_detail_module">Detail Module</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>
