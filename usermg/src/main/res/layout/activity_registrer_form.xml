@@ -85,7 +85,7 @@
         android:id="@+id/btn_register"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/orange"
+        android:backgroundTint="@color/orange_main"
         android:textColor="@color/white"
         android:text="@string/register"
         android:layout_marginTop="20dp"

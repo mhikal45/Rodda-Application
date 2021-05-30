@@ -11,6 +11,7 @@ class RegistrerFormActivity : AppCompatActivity() {
 
     private lateinit var registerBinding: ActivityRegistrerFormBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registrer_form)
