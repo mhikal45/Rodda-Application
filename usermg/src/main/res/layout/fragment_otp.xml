@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".um.register.OtpFragment">
+
+    <TextView
+        android:id="@+id/tv_textVerification"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/verification_code"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edit_verifiactionCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/btn_resend"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_textVerification"
+        android:maxLength="5"/>
+
+    <Button
+        android:id="@+id/btn_resend"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Resend"
+        app:layout_constraintStart_toEndOf="@id/edit_verifiactionCode"
+        app:layout_constraintTop_toTopOf="@id/edit_verifiactionCode" />
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/submit"
+        app:layout_constraintTop_toBottomOf="@+id/edit_verifiactionCode" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
