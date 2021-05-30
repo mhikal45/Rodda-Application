@@ -10,13 +10,13 @@
         android:id="@+id/rv_img_detail"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_foto_main"
+        app:layout_constraintBottom_toTopOf="@+id/btn_foto_detail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_foto_main"
+        android:id="@+id/btn_foto_detail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -25,12 +25,13 @@
         android:text="@string/tambahkan_foto_detail"
         android:textSize="23sp"
         android:background="@drawable/round_button"
-        app:layout_constraintBottom_toTopOf="@+id/btn_next_detail"
+        app:layout_constraintBottom_toTopOf="@+id/btn_next_form"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btn_next_detail"
+        android:visibility="invisible"
+        android:id="@+id/btn_next_form"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
