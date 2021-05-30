@@ -44,7 +44,7 @@ class RegistrerFormActivity : AppCompatActivity(), View.OnClickListener {
     fun register(){
         val fullName = registerBinding.editRealname.text.toString()
         val email = registerBinding.editEmail.text.toString()
-        val phone = registerBinding.editEmail.text.toString()
+        val phone = registerBinding.editNumb.text.toString()
         val password = registerBinding.editPassword.text.toString()
 
         if(fullName.isEmpty()){
@@ -72,8 +72,7 @@ class RegistrerFormActivity : AppCompatActivity(), View.OnClickListener {
                     val user = hashMapOf(
                         "fullName" to fullName,
                         "email" to email,
-                        "phone" to phone,
-                        "password" to password
+                        "phone" to phone
                     )
                     userID = firebaseAuth.currentUser?.uid.toString()
                     db.collection("users")
