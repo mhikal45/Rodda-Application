@@ -7,9 +7,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.singgihrp.usermg.MainActivity
 import com.singgihrp.usermg.R
 import com.singgihrp.usermg.databinding.ActivityRegistrerFormBinding
@@ -20,6 +21,8 @@ class RegistrerFormActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var registerBinding: ActivityRegistrerFormBinding
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
+    private lateinit var userID: String
 
     companion object{
         const val TAG = "Result Regist"
@@ -31,6 +34,7 @@ class RegistrerFormActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(registerBinding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
+        db = Firebase.firestore
 
         registerBinding.btnRegister.setOnClickListener(this)
         registerBinding.tvLogin.setOnClickListener(this)
@@ -65,9 +69,26 @@ class RegistrerFormActivity : AppCompatActivity(), View.OnClickListener {
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this, OnCompleteListener {
                 if(it.isSuccessful){
+                    val user = hashMapOf(
+                        "fullName" to fullName,
+                        "email" to email,
+                        "phone" to phone,
+                        "password" to password
+                    )
+                    userID = firebaseAuth.currentUser?.uid.toString()
+                    db.collection("users")
+                        .document(userID)
+                        .set(user)
+                        .addOnCompleteListener(this, OnCompleteListener {
+                            if(it.isSuccessful){
+                                Log.d(TAG, "onSuccess: User data added to store")
+                            }else{
+                                Log.d(TAG, "onFail: User data added to store")
+                            }
+                        })
                     registerBinding.pbRegis.visibility = View.INVISIBLE
                     Toast.makeText(this, "Berhasil Register", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, MainActivity ::class.java))
                     finish()
                 }else{
                     registerBinding.pbRegis.visibility = View.INVISIBLE
