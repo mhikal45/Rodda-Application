@@ -7,6 +7,18 @@
     android:padding="15dp"
     tools:context=".um.register.RegistrerFormActivity">
 
+    <ProgressBar
+        android:id="@+id/pb_regis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:indeterminateTint="@color/orange_main"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="invisible"/>
+
     <ImageView
         android:id="@+id/img_rodda"
         android:layout_width="0dp"
@@ -35,8 +47,7 @@
         android:hint="@string/full_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@id/guideline" />
 
     <EditText
         android:id="@+id/edit_email"
@@ -47,8 +58,7 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_realname"
-        android:autofillHints="abcd@gmail.com" />
+        app:layout_constraintTop_toBottomOf="@id/edit_realname" />
 
     <EditText
         android:id="@+id/edit_numb"
@@ -56,11 +66,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="@string/telphone_number"
-        android:inputType="text"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_email"
-        android:autofillHints="081xxxxx" />
+        app:layout_constraintTop_toBottomOf="@id/edit_email"/>
 
     <EditText
         android:id="@+id/edit_password"
@@ -71,8 +80,7 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_numb"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@id/edit_numb" />
 
     <Button
         android:id="@+id/btn_register"
@@ -80,7 +88,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/orange_main"
-        android:onClick="register"
         android:text="@string/register"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,11 +112,9 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
         android:text="@string/login"
-        android:clickable="true"
         android:textColor="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/tv_haveAcc"
-        app:layout_constraintTop_toBottomOf="@id/btn_register"
-        android:focusable="true" />
+        app:layout_constraintTop_toBottomOf="@id/btn_register" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

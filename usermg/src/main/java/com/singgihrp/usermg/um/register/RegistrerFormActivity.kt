@@ -4,99 +4,87 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.auth.FirebaseUser
+import com.singgihrp.usermg.MainActivity
 import com.singgihrp.usermg.R
 import com.singgihrp.usermg.databinding.ActivityRegistrerFormBinding
 import com.singgihrp.usermg.um.login.LoginActivity
 
-class RegistrerFormActivity : AppCompatActivity(){
 
-    lateinit var auth: FirebaseAuth
+class RegistrerFormActivity : AppCompatActivity(), View.OnClickListener {
+
     private lateinit var registerBinding: ActivityRegistrerFormBinding
-    private lateinit var db : FirebaseFirestore
+    private lateinit var firebaseAuth: FirebaseAuth
 
-    companion object {
-        const val TAG = "Register Activity"
+    companion object{
+        const val TAG = "Result Regist"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_registrer_form)
         registerBinding = ActivityRegistrerFormBinding.inflate(layoutInflater)
+        setContentView(registerBinding.root)
 
-        db = FirebaseFirestore.getInstance()
+        firebaseAuth = FirebaseAuth.getInstance()
 
-        registerBinding.tvLogin.setOnClickListener{
-            startActivity(Intent(this, LoginActivity::class.java))
-        }
+        registerBinding.btnRegister.setOnClickListener(this)
+        registerBinding.tvLogin.setOnClickListener(this)
+
     }
 
-    fun register(v: View){
-        val rName = registerBinding.editRealname.text.toString()
+    fun register(){
+        val fullName = registerBinding.editRealname.text.toString()
         val email = registerBinding.editEmail.text.toString()
-        val numbTelp = registerBinding.editNumb.text.toString()
+        val phone = registerBinding.editEmail.text.toString()
         val password = registerBinding.editPassword.text.toString()
 
+        if(fullName.isEmpty()){
+            registerBinding.editRealname.error = "Required"
+            return
+        }
+        if(email.isEmpty()){
+            registerBinding.editEmail.error = "Required"
+            return
+        }
+        if(phone.isEmpty()){
+            registerBinding.editNumb.error = "Required"
+            return
+        }
+        if(password.isEmpty()){
+            registerBinding.editPassword.error = "Required"
+            return
+        }
 
-        //if(rName.isEmpty()||email.isEmpty()||numbTelp.isEmpty()||password.isEmpty()) return
-        val user = hashMapOf(
-            "full_name" to "AAAA",
-            "email" to "AAAAA",
-            "no_telp" to "AAAAA",
-            "password" to "AAAAA"
-        )
+        registerBinding.pbRegis.visibility = View.VISIBLE
 
-        db.collection("Users")
-            .add(user)
-            .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot written with ID: ${documentReference.id}")
-            }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error adding document", e)
-            }
-        /*when{
-            rName.isEmpty() -> {
-                registerBinding.editRealname.error = "Tidak Boleh Kosong"
-                return
-            }
-            email.isEmpty() -> {
-                registerBinding.editEmail.error = "Tidak Boleh Kosong"
-                return
-            }
-            !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
-                registerBinding.editEmail.error = "Valid Email"
-                return
-            }
-            password.isEmpty() -> {
-                registerBinding.editPassword.error = "Tidak Boleh Kosong"
-                return
-            }
-            numbTelp.isEmpty() -> {
-                registerBinding.editNumb.error = "Tidak Boleh Kosong"
-                return
-            }
-            else ->{
-                val user = hashMapOf(
-                    "full_name" to rName,
-                    "email" to email,
-                    "no_telp" to numbTelp,
-                    "password" to password
-                )
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this, OnCompleteListener {
+                if(it.isSuccessful){
+                    registerBinding.pbRegis.visibility = View.INVISIBLE
+                    Toast.makeText(this, "Berhasil Register", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                }else{
+                    registerBinding.pbRegis.visibility = View.INVISIBLE
+                    Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show()
+                }
+            })
 
-                db.collection("Users")
-                    .add(user)
-                    .addOnSuccessListener { documentReference ->
-                        Log.d(TAG, "DocumentSnapshot written with ID: ${documentReference.id}")
-                    }
-                    .addOnFailureListener { e ->
-                        Log.w(TAG, "Error adding document", e)
-                    }
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id){
+            R.id.btn_register -> {
+                register()
+            }
+            R.id.tv_login -> {
+                startActivity(Intent(this, LoginActivity::class.java))
             }
         }
-*/
     }
 }

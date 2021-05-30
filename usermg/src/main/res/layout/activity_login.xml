@@ -90,11 +90,11 @@
         android:text="@string/register"
         android:textColor="@color/blue"
         android:layout_marginStart="10dp"
-        android:onClick="onClick"
         android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/tv_haventAcc"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_login"
+        android:focusable="true" />
 
 
 
