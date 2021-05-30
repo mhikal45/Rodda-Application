@@ -35,18 +35,8 @@
         android:hint="@string/full_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline" />
-
-    <EditText
-        android:id="@+id/edit_username"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="@string/username"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_realname" />
+        app:layout_constraintTop_toBottomOf="@id/guideline"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/edit_email"
@@ -57,7 +47,8 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_username" />
+        app:layout_constraintTop_toBottomOf="@id/edit_realname"
+        android:autofillHints="abcd@gmail.com" />
 
     <EditText
         android:id="@+id/edit_numb"
@@ -68,7 +59,8 @@
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_email" />
+        app:layout_constraintTop_toBottomOf="@id/edit_email"
+        android:autofillHints="081xxxxx" />
 
     <EditText
         android:id="@+id/edit_password"
@@ -79,16 +71,18 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_numb" />
+        app:layout_constraintTop_toBottomOf="@id/edit_numb"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/btn_register"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/orange_main"
-        android:textColor="@color/white"
-        android:text="@string/register"
         android:layout_marginTop="20dp"
+        android:backgroundTint="@color/orange_main"
+        android:onClick="register"
+        android:text="@string/register"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_password" />
@@ -111,9 +105,11 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
         android:text="@string/login"
+        android:clickable="true"
         android:textColor="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/tv_haveAcc"
-        app:layout_constraintTop_toBottomOf="@id/btn_register" />
+        app:layout_constraintTop_toBottomOf="@id/btn_register"
+        android:focusable="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

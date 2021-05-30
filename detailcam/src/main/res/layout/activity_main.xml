@@ -25,15 +25,17 @@
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:layout_editor_absoluteX="8dp" />
 
+    <include android:id="@+id/det_image"
+        layout="@layout/detail_image"/>
+
     <ProgressBar
         android:id="@+id/determinateBar"
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="5dp"
-
         android:progress="1"
         android:max="5"
-        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/det_image"
         tools:layout_editor_absoluteX="8dp" />
 
     <Button
