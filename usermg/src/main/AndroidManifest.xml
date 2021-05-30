@@ -9,14 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RoddaApplication">
-        <activity android:name=".um.register.RegistrerFormActivity"></activity>
+       <activity android:name=".um.register.RegistrerFormActivity" />
         <activity android:name=".um.login.LoginActivity" />
         <activity
             android:name=".splashscreen.SplashActivity"
             android:theme="@style/splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
