@@ -9,10 +9,5 @@ class ImageMainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.image_main_activity)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container_image_main, ImageMainFragment.newInstance())
-                .commitNow()
-        }
     }
 }
