@@ -13,10 +13,14 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.rodda.detailmodule.databinding.ActivityImageDetailBinding
+import com.rodda.detailmodule.ui.dataform.DataFormActivity
+import com.rodda.detailmodule.ui.dataform.DataFormActivity.Companion.IMAGE_DETAIL
+import com.rodda.detailmodule.ui.dataform.DataFormActivity.Companion.IMAGE_MAIN
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ImageDetailActivity : AppCompatActivity() {
 
@@ -27,9 +31,11 @@ class ImageDetailActivity : AppCompatActivity() {
     private lateinit var imageDetailBinding: ActivityImageDetailBinding
     private lateinit var currentPhotoPath : String
     private lateinit var imageAdapter : ImageDetailAdapter
+    private lateinit var imageDetail : ArrayList<String>
 
     private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
         if (result.resultCode == Activity.RESULT_OK) {
+            imageDetail.add(currentPhotoPath)
             imageAdapter.addToList(currentPhotoPath)
             imageDetailBinding.btnNextForm.visibility = View.VISIBLE
         }
@@ -71,5 +77,16 @@ class ImageDetailActivity : AppCompatActivity() {
                 }
             }
         }
+
+        val imageMain = intent.getStringExtra(imageMainPath)
+
+        imageDetailBinding.btnNextForm.setOnClickListener {
+            val formIntent = Intent(this,DataFormActivity::class.java)
+            formIntent.putExtra(IMAGE_MAIN,imageMain)
+            formIntent.putExtra(IMAGE_DETAIL,imageDetail)
+            startActivity(formIntent)
+        }
+
+
     }
 }
