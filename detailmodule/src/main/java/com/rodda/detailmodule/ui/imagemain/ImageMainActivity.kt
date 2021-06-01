@@ -2,9 +2,8 @@ package com.rodda.detailmodule.ui.imagemain
 
 
 import android.app.Activity
-import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.graphics.Bitmap
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
@@ -12,8 +11,13 @@ import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.FileProvider
+import com.bumptech.glide.Glide
 import com.rodda.detailmodule.databinding.ImageMainActivityBinding
+import com.rodda.detailmodule.ui.imagedetail.ImageDetailActivity
+import com.rodda.detailmodule.ui.imagedetail.ImageDetailActivity.Companion.imageMainPath
 import java.io.File
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -24,18 +28,9 @@ class ImageMainActivity : AppCompatActivity() {
 
     private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
         if (result.resultCode == Activity.RESULT_OK) {
-            val bundle = result.data?.extras
-            val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss",Locale("indonesia")).format(Date())
-            val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-            File.createTempFile(
-                "JPEG_${timeStamp}",
-                ".jpg",
-                storageDir
-            ).apply {
-                currentPhotoPath = absolutePath
-            }
-            val imageMain = bundle?.get("data") as Bitmap
-            imageMainBinding.imgMain.setImageBitmap(imageMain)
+            Glide.with(this)
+                .load(currentPhotoPath)
+                .into(imageMainBinding.imgMain)
             imageMainBinding.btnNextDetail.visibility = View.VISIBLE
         }
     }
@@ -46,12 +41,34 @@ class ImageMainActivity : AppCompatActivity() {
         setContentView(imageMainBinding.root)
 
         imageMainBinding.btnFotoMain.setOnClickListener {
-            val intentPicture = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            try {
-                startForResult.launch(intentPicture)
-            } catch (e : ActivityNotFoundException){
-                Toast.makeText(this, e.message,Toast.LENGTH_SHORT).show()
+            Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { imageMain ->
+                    val photoFile = try {
+                        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss",Locale("indonesia")).format(Date())
+                        val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+                        File.createTempFile(
+                            "JPEG_${timeStamp}",
+                            ".jpg",
+                            storageDir
+                        ).apply {
+                            currentPhotoPath = absolutePath
+                        }
+                    } catch (e : IOException) {
+                        Toast.makeText(this,e.message,Toast.LENGTH_SHORT).show()
+                    }
+                photoFile?.also {
+                    val photoURI : Uri = FileProvider.getUriForFile(
+                        this,"com.rodda.detailmodule", it as File
+                    )
+                    imageMain.putExtra(MediaStore.EXTRA_OUTPUT,photoURI)
+                    startForResult.launch(imageMain)
+                }
             }
+        }
+
+        imageMainBinding.btnNextDetail.setOnClickListener {
+            val detailIntent = Intent(this,ImageDetailActivity::class.java)
+            detailIntent.putExtra(imageMainPath,currentPhotoPath)
+            startActivity(detailIntent)
         }
     }
 }
