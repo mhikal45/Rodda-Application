@@ -16,6 +16,7 @@ import com.singgihrp.usermg.MainActivity
 import com.singgihrp.usermg.R
 import com.singgihrp.usermg.databinding.ActivityRegistrerFormBinding
 import com.singgihrp.usermg.ui.mainpage.PageMainActivity
+import com.singgihrp.usermg.ui.support.LoadingDialog
 import com.singgihrp.usermg.ui.um.login.LoginActivity
 
 
@@ -25,6 +26,7 @@ class RegistrerFormActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private lateinit var userID: String
+    private lateinit var loadingDialog: LoadingDialog
 
     companion object{
         const val TAG = "Result Regist"
@@ -37,6 +39,8 @@ class RegistrerFormActivity : AppCompatActivity(), View.OnClickListener {
 
         firebaseAuth = FirebaseAuth.getInstance()
         db = Firebase.firestore
+
+        loadingDialog = LoadingDialog(this)
 
         registerBinding.btnRegister.setOnClickListener(this)
         registerBinding.tvLogin.setOnClickListener(this)
@@ -96,7 +100,7 @@ class RegistrerFormActivity : AppCompatActivity(), View.OnClickListener {
             return
         }
 
-        registerBinding.pbRegis.visibility = View.VISIBLE
+        loadingDialog.startDialog()
 
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this, OnCompleteListener {
@@ -117,12 +121,12 @@ class RegistrerFormActivity : AppCompatActivity(), View.OnClickListener {
                                 Log.d(TAG, "onFail: User data added to store")
                             }
                         })
-                    registerBinding.pbRegis.visibility = View.INVISIBLE
+                    loadingDialog.dismissDialog()
                     Toast.makeText(this, "Berhasil Register", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, PageMainActivity::class.java))
                     finish()
                 }else{
-                    registerBinding.pbRegis.visibility = View.INVISIBLE
+                    loadingDialog.dismissDialog()
                     Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show()
                 }
             })

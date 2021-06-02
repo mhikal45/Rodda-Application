@@ -11,6 +11,7 @@ import com.singgihrp.usermg.MainActivity
 import com.singgihrp.usermg.R
 import com.singgihrp.usermg.databinding.ActivityLoginBinding
 import com.singgihrp.usermg.ui.mainpage.PageMainActivity
+import com.singgihrp.usermg.ui.support.LoadingDialog
 import com.singgihrp.usermg.ui.um.register.RegistrerFormActivity
 import kotlin.math.log
 
@@ -18,6 +19,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var loginBinding: ActivityLoginBinding
     private lateinit var fbAuth: FirebaseAuth
+    private lateinit var loadingDialog: LoadingDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +27,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(loginBinding.root)
 
         fbAuth = FirebaseAuth.getInstance()
+        loadingDialog = LoadingDialog(this)
 
         loginBinding.tvRegis.setOnClickListener(this)
         loginBinding.btnLogin.setOnClickListener(this)
@@ -54,17 +57,17 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             return
         }
 
-        loginBinding.pbLogin.visibility = View.VISIBLE
+        loadingDialog.startDialog()
 
         fbAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this, OnCompleteListener {
                 if(it.isSuccessful){
-                    loginBinding.pbLogin.visibility = View.INVISIBLE
+                    loadingDialog.dismissDialog()
                     startActivity(Intent(this, PageMainActivity::class.java))
                     Toast.makeText(this, "Berhasil", Toast.LENGTH_SHORT).show()
 
                 }else{
-                    loginBinding.pbLogin.visibility = View.INVISIBLE
+                    loadingDialog.dismissDialog()
                     Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show()
                 }
             })
