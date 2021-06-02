@@ -8,10 +8,10 @@ import com.rodda.detailmodule.databinding.ItemImageDetailBinding
 
 class ImageDetailAdapter : RecyclerView.Adapter<ImageDetailAdapter.DetailViewHolder>() {
 
-    private val imageList = arrayListOf<String>()
+    private val imageList = ArrayList<String>()
 
-    fun addToList (path : String) {
-        imageList.add(path)
+    fun addToList (image : ArrayList<String>) {
+        imageList.addAll(image)
     }
 
     class DetailViewHolder(private val binding: ItemImageDetailBinding) : RecyclerView.ViewHolder(binding.root) {

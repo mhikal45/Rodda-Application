@@ -16,6 +16,7 @@ import com.google.android.gms.location.*
 import com.rodda.detailmodule.databinding.ActivityDataFormBinding
 import java.lang.Exception
 import java.util.*
+import kotlin.collections.ArrayList
 
 class DataFormActivity : AppCompatActivity() {
 
@@ -51,6 +52,11 @@ class DataFormActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
         }
+
+        val imageMain = intent.getStringExtra(IMAGE_MAIN)
+        val imageDetail : ArrayList<String>? = intent.getStringArrayListExtra(IMAGE_DETAIL)
+        Log.d("Image Main:",imageMain!!)
+        Log.d("Image Detail:",imageDetail!![0])
     }
 
     private fun checkPermission () : Boolean {

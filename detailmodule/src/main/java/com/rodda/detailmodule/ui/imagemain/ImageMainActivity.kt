@@ -14,6 +14,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.rodda.detailmodule.databinding.ImageMainActivityBinding
+import com.rodda.detailmodule.ui.dataform.DataFormActivity.Companion.IMAGE_MAIN
 import com.rodda.detailmodule.ui.imagedetail.ImageDetailActivity
 import com.rodda.detailmodule.ui.imagedetail.ImageDetailActivity.Companion.imageMainPath
 import java.io.File
