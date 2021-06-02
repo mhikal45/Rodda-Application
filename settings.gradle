@@ -2,5 +2,3 @@ rootProject.name = "Rodda Application"
 include ':app'
 include ':usermg'
 include ':detailmodule'
-include ':mainmenu'
-include ':detailcam'

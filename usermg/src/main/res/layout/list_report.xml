@@ -16,6 +16,7 @@
         tools:src="@tools:sample/avatars" />
 
     <TextView
+        android:id="@+id/tv_location"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -24,5 +25,36 @@
         app:layout_constraintTop_toTopOf="@+id/img_mainPhoto"
         tools:text="Nama Tempat" />
 
+
+    <ImageView
+        android:id="@+id/img_cracked"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:src="@mipmap/ic_cracked"
+        app:layout_constraintStart_toEndOf="@id/img_mainPhoto"
+        app:layout_constraintTop_toBottomOf="@id/tv_location"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:id="@+id/img_hole"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:src="@mipmap/ic_hole"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@id/img_cracked"
+        app:layout_constraintTop_toBottomOf="@id/tv_location" />
+
+    <TextView
+        android:id="@+id/tv_byName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@id/img_mainPhoto"
+        app:layout_constraintTop_toBottomOf="@id/img_cracked"
+        app:layout_constraintBottom_toBottomOf="@id/img_mainPhoto"
+        tools:text="by name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

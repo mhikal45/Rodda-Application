@@ -1,4 +1,4 @@
-package com.singgihrp.usermg.ui.mainpage.ui
+package com.singgihrp.usermg.ui.support
 
 import android.content.Intent
 import android.os.Bundle

@@ -77,4 +77,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             startActivity(Intent(this, PageMainActivity::class.java))
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
 }

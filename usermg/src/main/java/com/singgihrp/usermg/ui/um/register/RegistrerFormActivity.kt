@@ -126,6 +126,5 @@ class RegistrerFormActivity : AppCompatActivity(), View.OnClickListener {
                     Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show()
                 }
             })
-
     }
 }

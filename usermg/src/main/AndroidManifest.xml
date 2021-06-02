@@ -14,8 +14,7 @@
         <activity
             android:name=".ui.mainpage.PageMainActivity"
             android:label="@string/title_activity_page_main"
-            android:theme="@style/Theme.RoddaApplication.NoActionBar"
-            android:launchMode="singleTop" />
+            android:theme="@style/Theme.RoddaApplication.NoActionBar" />
         <activity android:name=".ui.um.register.RegistrerFormActivity" />
         <activity android:name=".ui.um.login.LoginActivity" />
         <activity
