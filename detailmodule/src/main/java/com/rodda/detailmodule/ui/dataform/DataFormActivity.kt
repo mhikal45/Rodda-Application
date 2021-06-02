@@ -32,8 +32,7 @@ class DataFormActivity : AppCompatActivity() {
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(p0: LocationResult) {
             val lastLocation : Location = p0.lastLocation
-            val addressLine =  getAddressLine(lastLocation.longitude,lastLocation.altitude)
-            activityDataFormBinding.etLokasi.setText(addressLine)
+            activityDataFormBinding.etLokasi.setText(getAddressLine(lastLocation.longitude,lastLocation.latitude))
         }
     }
 
@@ -84,8 +83,7 @@ class DataFormActivity : AppCompatActivity() {
                         fusedLocationProviderClient.requestLocationUpdates(requestLocation,locationCallback,
                             Looper.myLooper()!!)
                     } else {
-                        val addressLine = getAddressLine(location.longitude,location.altitude)
-                        activityDataFormBinding.etLokasi.setText(addressLine)
+                        activityDataFormBinding.etLokasi.setText(getAddressLine(location.longitude,location.latitude))
                     }
                 }
             } else {
