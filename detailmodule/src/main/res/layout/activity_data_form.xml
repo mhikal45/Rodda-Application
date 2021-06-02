@@ -28,12 +28,24 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:autofillHints="Masukkan Lokasi Jalan"
         android:inputType="none"
         android:textIsSelectable="true"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_location"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_lokasi" />
+
+    <Button
+        android:id="@+id/btn_location"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/lokasi_saya"
+        app:layout_constraintBottom_toTopOf="@+id/tv_catatan"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_lokasi" />
 
     <TextView
