@@ -109,7 +109,7 @@ class DataFormActivity : AppCompatActivity() {
         Log.d("Longtitude",longitude.toString())
         Log.d("Latitude",latitude.toString())
         val geocoder = Geocoder(this, Locale.getDefault())
-        val address = geocoder.getFromLocation(latitude-45.0, longitude, 1)
+        val address = geocoder.getFromLocation(latitude, longitude, 1)
 
         return address[0].getAddressLine(0)
     }
