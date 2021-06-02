@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="15dp"
-    tools:context=".um.register.RegistrerFormActivity">
+    tools:context=".ui.um.register.RegistrerFormActivity">
 
     <ProgressBar
         android:id="@+id/pb_regis"
@@ -61,15 +61,25 @@
         app:layout_constraintTop_toBottomOf="@id/edit_realname" />
 
     <EditText
+        android:id="@+id/edit_countryCode"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/country_code_hint"
+        android:inputType="number"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/edit_numb"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_email" />
+
+    <EditText
         android:id="@+id/edit_numb"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:hint="@string/telphone_number"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_email"/>
+        app:layout_constraintStart_toEndOf="@id/edit_countryCode"
+        app:layout_constraintTop_toTopOf="@id/edit_countryCode"/>
 
     <EditText
         android:id="@+id/edit_password"
@@ -82,6 +92,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_numb" />
 
+    <EditText
+        android:id="@+id/edit_passwordConfirm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="@string/confirm_password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_password" />
+
     <Button
         android:id="@+id/btn_register"
         android:layout_width="0dp"
@@ -92,7 +113,7 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_password" />
+        app:layout_constraintTop_toBottomOf="@id/edit_passwordConfirm" />
 
     <TextView
         android:id="@+id/tv_haveAcc"
