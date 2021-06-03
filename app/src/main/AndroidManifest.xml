@@ -31,6 +31,9 @@
             android:theme="@style/Theme.RoddaApplication.NoActionBar"/>
         <activity android:name=".ui.um.register.RegistrerFormActivity" />
         <activity android:name=".ui.um.login.LoginActivity" />
+        <activity android:name=".ui.dataform.DataFormActivity"/>
+        <activity android:name=".ui.imagedetail.ImageDetailActivity" />
+        <activity android:name=".ui.imagemain.ImageMainActivity" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.rodda.roddaapplication"
