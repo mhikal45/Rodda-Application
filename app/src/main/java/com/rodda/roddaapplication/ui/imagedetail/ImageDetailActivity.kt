@@ -36,7 +36,7 @@ class ImageDetailActivity : AppCompatActivity() {
     private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
         if (result.resultCode == Activity.RESULT_OK) {
             imageDetail.add(currentPhotoPath)
-            imageAdapter.addToList(imageDetail)
+            imageAdapter.addToList(currentPhotoPath)
             imageDetailBinding.btnNextForm.visibility = View.VISIBLE
         }
     }
