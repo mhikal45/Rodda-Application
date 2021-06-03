@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rodda.roddaapplication">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,15 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RoddaApplication">
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.RoddaApplication.NoActionBar">
+            android:name=".splash.SplashActivity"
+            android:theme="@style/splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.RoddaApplication.NoActionBar"/>
+        <activity android:name=".ui.um.register.RegistrerFormActivity" />
+        <activity android:name=".ui.um.login.LoginActivity" />
     </application>
 
 </manifest>

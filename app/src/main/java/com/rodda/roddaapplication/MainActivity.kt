@@ -1,7 +1,8 @@
 package com.rodda.roddaapplication
 
 import android.os.Bundle
-import android.view.Menu
+import android.util.Log
+import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -11,12 +12,25 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.rodda.roddaapplication.databinding.ActivityMainBinding
+import com.rodda.roddaapplication.supp.LoadingDialog
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private lateinit var firestore: FirebaseFirestore
+    private lateinit var fAuth: FirebaseAuth
+
+    companion object{
+        const val TAG = "Page Main"
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,34 +38,54 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.appBarMain.toolbar)
+        setSupportActionBar(binding.appBarPageMain.toolbar)
 
-        binding.appBarMain.fab.setOnClickListener { view ->
+        firestore = Firebase.firestore
+        fAuth = FirebaseAuth.getInstance()
+        val userId = fAuth.currentUser?.uid
+        val loadingDialog = LoadingDialog(this)
+
+        loadingDialog.startDialog()
+
+        binding.appBarPageMain.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
+
+        val name: TextView = navView.getHeaderView(0).findViewById(R.id.tv_name)
+        val phone: TextView = navView.getHeaderView(0).findViewById(R.id.tv_phone)
+        val email: TextView = navView.getHeaderView(0).findViewById(R.id.tv_email)
+
         val navController = findNavController(R.id.nav_host_fragment_content_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
+                R.id.nav_home, R.id.nav_logout
             ), drawerLayout
         )
+        val documentReference = firestore.collection("users").document(userId.toString())
+        documentReference.get()
+            .addOnSuccessListener {
+                loadingDialog.dismissDialog()
+                name.text = it.getString("fullName")
+                phone.text = it.getString("phone")
+                email.text = it.getString("email")
+            }.addOnFailureListener{
+                loadingDialog.dismissDialog()
+                Log.e(TAG, it.toString())
+            }
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
     }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onBackPressed() {
+        moveTaskToBack(true)
+        exitProcess(-1)
     }
 }
