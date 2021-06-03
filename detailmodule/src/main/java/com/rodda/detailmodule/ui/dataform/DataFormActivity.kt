@@ -6,19 +6,29 @@ import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.rodda.detailmodule.R
 import com.rodda.detailmodule.databinding.ActivityDataFormBinding
+import java.io.File
 import java.lang.Exception
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class DataFormActivity : AppCompatActivity() {
+class DataFormActivity : AppCompatActivity(), View.OnClickListener {
 
     companion object {
         const val IMAGE_MAIN = "image_main"
@@ -27,13 +37,26 @@ class DataFormActivity : AppCompatActivity() {
         private const val PERMISSION_ID = 10
     }
 
+    private lateinit var dataViewModel : DataFormViewModel
     private lateinit var activityDataFormBinding: ActivityDataFormBinding
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private var imageMain : String? = ""
+    private val imageDetail : ArrayList<String> = ArrayList()
+    private var firebaseAuth: FirebaseAuth? = null
+    private var storage : FirebaseStorage? = null
+    private var storageReference : StorageReference? = null
+    private var firestore : FirebaseFirestore? = null
+    private val uploadUrl = ArrayList<String>()
+    private var id = ""
+    private var fullName : String? = "Hikal"
+    private var time = SimpleDateFormat("dd:MM:yyyy_HH:mm:ss",Locale("Indonesia")).format(Date())
+    private var location : String? = "Tegal"
 
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(p0: LocationResult) {
             val lastLocation : Location = p0.lastLocation
             activityDataFormBinding.etLokasi.setText(getAddressLine(lastLocation.longitude,lastLocation.latitude))
+            location = getAddressLine(lastLocation.longitude,lastLocation.latitude)
         }
     }
 
@@ -44,19 +67,26 @@ class DataFormActivity : AppCompatActivity() {
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
-        activityDataFormBinding.btnLocation.setOnClickListener {
-            try {
-                requestPermission()
-                getCurrentLocation()
-            } catch (e : Exception) {
-                e.printStackTrace()
-            }
+        dataViewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory()).get(DataFormViewModel::class.java)
+
+        activityDataFormBinding.btnLocation.setOnClickListener (this)
+
+        firebaseAuth = FirebaseAuth.getInstance()
+        storage = FirebaseStorage.getInstance()
+        firestore = FirebaseFirestore.getInstance()
+        storageReference = storage!!.reference
+
+        id = firebaseAuth?.currentUser?.uid.toString()
+
+        val documentReference = firestore?.collection("user")?.document(id)
+        documentReference?.get()?.addOnSuccessListener {
+            fullName = it.getString("fullName")
         }
 
-        val imageMain = intent.getStringExtra(IMAGE_MAIN)
-        val imageDetail : ArrayList<String>? = intent.getStringArrayListExtra(IMAGE_DETAIL)
-        Log.d("Image Main:",imageMain!!)
-        Log.d("Image Detail:",imageDetail!![0])
+        imageMain = intent.getStringExtra(IMAGE_MAIN)
+        imageDetail.addAll(intent.getStringArrayListExtra(IMAGE_DETAIL)!!)
+
+        activityDataFormBinding.btnKirim.setOnClickListener(this)
     }
 
     private fun checkPermission () : Boolean {
@@ -90,6 +120,7 @@ class DataFormActivity : AppCompatActivity() {
                             Looper.myLooper()!!)
                     } else {
                         activityDataFormBinding.etLokasi.setText(getAddressLine(location.longitude,location.latitude))
+                        this.location = getAddressLine(location.longitude,location.latitude)
                     }
                 }
             } else {
@@ -118,6 +149,44 @@ class DataFormActivity : AppCompatActivity() {
         return address[0].getAddressLine(0)
     }
 
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.btn_kirim -> {
+                activityDataFormBinding.progressbar.visibility = View.VISIBLE
+                if (imageMain != null && imageDetail.isNotEmpty()) {
+                    uploadUrl.add(imageMain!!)
+                    for (i in imageDetail) {
+                        val imageRef = storageReference!!.child(i)
+                        imageRef.putFile(Uri.fromFile(File(i))).addOnSuccessListener {
+                            imageRef.downloadUrl.addOnCompleteListener {
+                                uploadUrl.add(it.toString())
+                                if (uploadUrl.size == imageDetail.size) {
+                                    activityDataFormBinding.progressbar.visibility = View.INVISIBLE
+                                    dataViewModel.postReport(fullName!!,location!!,time,uploadUrl)
+                                    Toast.makeText(this,"Berhasil Mengirim Laporan",Toast.LENGTH_SHORT).show()
+                                }
+                            }.addOnCanceledListener {
+                                activityDataFormBinding.progressbar.visibility = View.INVISIBLE
+                                Toast.makeText(this,"Gagal mendapatkan link",Toast.LENGTH_SHORT).show()
+                            }
+                        }.addOnFailureListener{
+                            activityDataFormBinding.progressbar.visibility = View.INVISIBLE
+                            Log.d("Gagal upload",it.message!!)
+                            Toast.makeText(this,it.message,Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+            R.id.btn_location -> {
+                try {
+                    requestPermission()
+                    getCurrentLocation()
+                } catch (e : Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }
+    }
 
 
 }
