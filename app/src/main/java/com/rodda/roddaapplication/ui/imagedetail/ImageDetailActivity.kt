@@ -1,4 +1,4 @@
-package com.rodda.detailmodule.ui.imagedetail
+package com.rodda.roddaapplication.ui.imagedetail
 
 import android.app.Activity
 import android.content.Intent
@@ -12,10 +12,10 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.rodda.detailmodule.databinding.ActivityImageDetailBinding
-import com.rodda.detailmodule.ui.dataform.DataFormActivity
-import com.rodda.detailmodule.ui.dataform.DataFormActivity.Companion.IMAGE_DETAIL
-import com.rodda.detailmodule.ui.dataform.DataFormActivity.Companion.IMAGE_MAIN
+import com.rodda.roddaapplication.databinding.ActivityImageDetailBinding
+import com.rodda.roddaapplication.ui.dataform.DataFormActivity
+import com.rodda.roddaapplication.ui.dataform.DataFormActivity.Companion.IMAGE_DETAIL
+import com.rodda.roddaapplication.ui.dataform.DataFormActivity.Companion.IMAGE_MAIN
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat

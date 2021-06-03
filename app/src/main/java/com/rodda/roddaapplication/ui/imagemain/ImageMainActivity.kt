@@ -1,4 +1,4 @@
-package com.rodda.detailmodule.ui.imagemain
+package com.rodda.roddaapplication.ui.imagemain
 
 
 import android.app.Activity
@@ -13,10 +13,9 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
-import com.rodda.detailmodule.databinding.ImageMainActivityBinding
-import com.rodda.detailmodule.ui.dataform.DataFormActivity.Companion.IMAGE_MAIN
-import com.rodda.detailmodule.ui.imagedetail.ImageDetailActivity
-import com.rodda.detailmodule.ui.imagedetail.ImageDetailActivity.Companion.imageMainPath
+import com.rodda.roddaapplication.databinding.ImageMainActivityBinding
+import com.rodda.roddaapplication.ui.imagedetail.ImageDetailActivity
+import com.rodda.roddaapplication.ui.imagedetail.ImageDetailActivity.Companion.imageMainPath
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat

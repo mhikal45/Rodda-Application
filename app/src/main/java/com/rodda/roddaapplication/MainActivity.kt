@@ -1,9 +1,9 @@
 package com.rodda.roddaapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -18,6 +18,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.rodda.roddaapplication.databinding.ActivityMainBinding
 import com.rodda.roddaapplication.supp.LoadingDialog
+import com.rodda.roddaapplication.ui.imagemain.ImageMainActivity
 import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
@@ -47,9 +48,9 @@ class MainActivity : AppCompatActivity() {
 
         loadingDialog.startDialog()
 
-        binding.appBarPageMain.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        binding.appBarPageMain.fab.setOnClickListener {
+            val intentDetail = Intent(this,ImageMainActivity::class.java)
+            startActivity(intentDetail)
         }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView

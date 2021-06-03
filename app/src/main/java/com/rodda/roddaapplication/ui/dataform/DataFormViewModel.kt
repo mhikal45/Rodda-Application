@@ -1,10 +1,8 @@
-package com.rodda.detailmodule.ui.dataform
+package com.rodda.roddaapplication.ui.dataform
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.rodda.detailmodule.model.network.ApiConfig
-import com.rodda.detailmodule.model.response.ReportResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,11 +16,12 @@ class DataFormViewModel : ViewModel() {
 
 
     fun postReport (fullName : String,location : String,time : String,image : List<String>) {
-        val client = ApiConfig().getApiServices().postReport(fullName,location,time,image)
-        client.enqueue(object : Callback<ReportResponse> {
+        val client = com.rodda.roddaapplication.model.network.ApiConfig()
+            .getApiServices().postReport(fullName,location,time,image)
+        client.enqueue(object : Callback<com.rodda.roddaapplication.model.response.ReportResponse> {
             override fun onResponse(
-                call: Call<ReportResponse>,
-                response: Response<ReportResponse>
+                call: Call<com.rodda.roddaapplication.model.response.ReportResponse>,
+                response: Response<com.rodda.roddaapplication.model.response.ReportResponse>
             ) {
                 if (response.isSuccessful) {
                     _fullName.value = response.body()?.fullName
@@ -32,7 +31,7 @@ class DataFormViewModel : ViewModel() {
                 }
             }
 
-            override fun onFailure(call: Call<ReportResponse>, t: Throwable) {
+            override fun onFailure(call: Call<com.rodda.roddaapplication.model.response.ReportResponse>, t: Throwable) {
                 Log.d ("OnFailure :",t.message.toString())
             }
 

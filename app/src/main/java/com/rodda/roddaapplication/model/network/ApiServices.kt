@@ -1,6 +1,6 @@
-package com.rodda.detailmodule.model.network
+package com.rodda.roddaapplication.model.network
 
-import com.rodda.detailmodule.model.response.ReportResponse
+import com.rodda.roddaapplication.model.response.ReportResponse
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded

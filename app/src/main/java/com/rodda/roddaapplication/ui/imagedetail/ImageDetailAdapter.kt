@@ -1,10 +1,10 @@
-package com.rodda.detailmodule.ui.imagedetail
+package com.rodda.roddaapplication.ui.imagedetail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.rodda.detailmodule.databinding.ItemImageDetailBinding
+import com.rodda.roddaapplication.databinding.ItemImageDetailBinding
 
 class ImageDetailAdapter : RecyclerView.Adapter<ImageDetailAdapter.DetailViewHolder>() {
 

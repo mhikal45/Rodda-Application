@@ -1,4 +1,4 @@
-package com.rodda.detailmodule.ui.dataform
+package com.rodda.roddaapplication.ui.dataform
 
 import android.Manifest
 import android.content.Context
@@ -20,8 +20,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.rodda.detailmodule.R
-import com.rodda.detailmodule.databinding.ActivityDataFormBinding
+import com.rodda.roddaapplication.R
+import com.rodda.roddaapplication.databinding.ActivityDataFormBinding
 import java.io.File
 import java.lang.Exception
 import java.text.SimpleDateFormat
@@ -151,7 +151,7 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.btn_kirim -> {
+             R.id.btn_kirim-> {
                 activityDataFormBinding.progressbar.visibility = View.VISIBLE
                 if (imageMain != null && imageDetail.isNotEmpty()) {
                     val mainRef = storageReference!!.child("images/*")
@@ -182,7 +182,7 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
                     }
                 }
             }
-            R.id.btn_location -> {
+            R.id.btn_location-> {
                 try {
                     requestPermission()
                     getCurrentLocation()

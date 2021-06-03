@@ -1,4 +1,4 @@
-package com.rodda.detailmodule.model.response
+package com.rodda.roddaapplication.model.response
 
 import com.google.gson.annotations.SerializedName
 

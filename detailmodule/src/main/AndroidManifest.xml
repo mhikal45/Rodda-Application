@@ -16,24 +16,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RoddaApplication">
-        <activity android:name=".ui.dataform.DataFormActivity"/>
-        <activity android:name=".ui.imagedetail.ImageDetailActivity" />
-        <activity android:name=".ui.imagemain.ImageMainActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="com.rodda.detailmodule"
-            android:exported="false"
-            android:enabled="true"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
-        </provider>
     </application>
 
 </manifest>

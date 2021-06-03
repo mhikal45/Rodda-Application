@@ -1,4 +1,4 @@
-package com.rodda.detailmodule.model.network
+package com.rodda.roddaapplication.model.network
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
