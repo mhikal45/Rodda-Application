@@ -154,9 +154,14 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_kirim -> {
                 activityDataFormBinding.progressbar.visibility = View.VISIBLE
                 if (imageMain != null && imageDetail.isNotEmpty()) {
-                    uploadUrl.add(imageMain!!)
+                    val mainRef = storageReference!!.child("images/*")
+                    mainRef.putFile(Uri.fromFile(File(imageMain))).addOnSuccessListener {
+                        mainRef.downloadUrl.addOnCompleteListener {
+                            uploadUrl.add(it.toString())
+                        }
+                    }
                     for (i in imageDetail) {
-                        val imageRef = storageReference!!.child(i)
+                        val imageRef = storageReference!!.child("images/*")
                         imageRef.putFile(Uri.fromFile(File(i))).addOnSuccessListener {
                             imageRef.downloadUrl.addOnCompleteListener {
                                 uploadUrl.add(it.toString())
