@@ -10,8 +10,8 @@ class ImageDetailAdapter : RecyclerView.Adapter<ImageDetailAdapter.DetailViewHol
 
     private val imageList = ArrayList<String>()
 
-    fun addToList (image : ArrayList<String>) {
-        imageList.addAll(image)
+    fun addToList (image : String) {
+        imageList.add(image)
     }
 
     class DetailViewHolder(private val binding: ItemImageDetailBinding) : RecyclerView.ViewHolder(binding.root) {
