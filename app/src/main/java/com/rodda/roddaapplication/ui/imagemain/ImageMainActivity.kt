@@ -57,7 +57,7 @@ class ImageMainActivity : AppCompatActivity() {
                     }
                 photoFile?.also {
                     val photoURI : Uri = FileProvider.getUriForFile(
-                        this,"com.rodda.detailmodule", it as File
+                        this,"com.rodda.roddaapplication", it as File
                     )
                     imageMain.putExtra(MediaStore.EXTRA_OUTPUT,photoURI)
                     startForResult.launch(imageMain)
