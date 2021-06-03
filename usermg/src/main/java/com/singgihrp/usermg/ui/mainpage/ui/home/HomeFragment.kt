@@ -17,7 +17,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var firebaseFirestore: FirebaseFirestore
-    private var adapter: ResultAdapter? = null
+    private var adapter: HomeAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
             .setQuery(query, ResultModel::class.java)
             .build()
 
-        adapter = ResultAdapter((firestoreRecyclerOptions))
+        adapter = HomeAdapter((firestoreRecyclerOptions))
         binding.rvListResult.addItemDecoration(DividerItemDecoration(activity, LinearLayoutManager.VERTICAL))
         binding.rvListResult.setHasFixedSize(true)
         binding.rvListResult.layoutManager = LinearLayoutManager(activity)

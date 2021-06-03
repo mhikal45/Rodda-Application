@@ -1,38 +1,45 @@
 package com.singgihrp.usermg.ui.mainpage.ui.home
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.singgihrp.usermg.R
 import com.singgihrp.usermg.databinding.ListReportBinding
-import com.singgihrp.usermg.entity.Resulys
+import com.singgihrp.usermg.entity.ResultModel
 
-class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
-    private val listItem = ArrayList<Resulys>()
+class HomeAdapter(options: FirestoreRecyclerOptions<ResultModel>) :
+    FirestoreRecyclerAdapter<ResultModel, HomeAdapter.ResultsViewHolder>(options) {
 
-    fun setData(items: ArrayList<Resulys>) {
-        listItem.clear()
-        listItem.addAll(items)
-        notifyDataSetChanged()
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultsViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_report, parent, false)
+        return ResultsViewHolder(view)
     }
 
-    inner class HomeViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val binding = ListReportBinding.bind(itemView)
+    override fun onBindViewHolder(holder: ResultsViewHolder, position: Int, model: ResultModel) {
+        holder.bind(model)
+    }
 
-        fun bind(item: Resulys) {
+    inner class ResultsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val binding = ListReportBinding.bind(itemView)
 
+        @SuppressLint("SetTextI18n")
+        fun bind(result: ResultModel) {
+            Glide.with(itemView.context).load(result.image?.get(0)).into(binding.imgMainPhoto)
+            binding.tvLocation.text = result.lokasi
+            binding.tvByName.text = "by ${result.nama}"
+            if (result.prediction?.contains("Crack") == true)
+                binding.imgCracked.visibility = View.VISIBLE
+            if (result.prediction?.contains("Plothole") == true && result.prediction?.contains("Crack") == false) {
+                binding.imgCracked.setImageResource(R.mipmap.ic_hole)
+                binding.imgCracked.visibility = View.VISIBLE
+            }else if(result.prediction?.contains("Plothole") == true){
+                binding.imgHole.visibility = View.VISIBLE
+            }
         }
     }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.list_report, parent, false)
-        return HomeViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        TODO("Not yet implemented")
-    }
-
-    override fun getItemCount(): Int = listItem.size
 }

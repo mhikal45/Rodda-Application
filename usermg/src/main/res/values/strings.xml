@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">usermg</string>
     <string name="full_name">Full Name</string>
-    <string name="username">Username</string>
+    <string name="username">Email</string>
     <string name="email_address">Email Address</string>
     <string name="password">Password</string>
     <string name="register">Register</string>
@@ -9,7 +9,7 @@
     <string name="login">Login</string>
     <string name="no_have_account">No have account?</string>
     <string name="remember_me">Remember Me</string>
-    <string name="telphone_number">Telphone Number</string>
+    <string name="telphone_number">8121xxxxxx</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="verification_code">Verification Code</string>

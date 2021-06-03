@@ -20,6 +20,7 @@ import com.google.firebase.ktx.Firebase
 import com.singgihrp.usermg.R
 import com.singgihrp.usermg.databinding.ActivityPageMainBinding
 import com.singgihrp.usermg.ui.support.LoadingDialog
+import kotlin.system.exitProcess
 
 class PageMainActivity : AppCompatActivity() {
 
@@ -86,7 +87,7 @@ class PageMainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val intent= Intent(Intent.ACTION_MAIN)
-        startActivity(intent)
+        moveTaskToBack(true);
+        exitProcess(-1)
     }
 }

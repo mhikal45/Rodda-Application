@@ -54,6 +54,8 @@
             android:layout_alignParentEnd="true"
             android:layout_toEndOf="@id/centerShim"
             android:gravity="center"
+            android:focusable="true"
+            android:clickable="true"
             android:text="@string/yes"
             android:textColor="@color/text_color_red" />
 

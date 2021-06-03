@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="orange_main">#FF6600</color>
     <color name="blue">#4255FF</color>
+    <color name="blue_pressed">#000C66</color>
     <color name="orange_nav">#EE5F00</color>
     <color name="red">#ff584f</color>
     <color name="red_pressed">#ef9a9a</color>
