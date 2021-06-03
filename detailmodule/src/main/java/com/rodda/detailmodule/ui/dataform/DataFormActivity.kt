@@ -155,7 +155,7 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
                 activityDataFormBinding.progressbar.visibility = View.VISIBLE
                 if (imageMain != null && imageDetail.isNotEmpty()) {
                     val mainRef = storageReference!!.child("images/*")
-                    mainRef.putFile(Uri.fromFile(File(imageMain))).addOnSuccessListener {
+                    mainRef.putFile(Uri.fromFile(File(imageMain!!))).addOnSuccessListener {
                         mainRef.downloadUrl.addOnCompleteListener {
                             uploadUrl.add(it.toString())
                         }
