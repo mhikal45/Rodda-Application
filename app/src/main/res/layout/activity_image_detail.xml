@@ -7,15 +7,27 @@
     android:layout_height="match_parent"
     tools:context=".ui.imagedetail.ImageDetailActivity">
 
+    <TextView
+        android:id="@+id/text_jalan_detail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/ambil_foto_kerusakan_jalan_lebih_dekat"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_img_detail"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        tools:listitem="@layout/item_image_detail"
         app:layout_constraintBottom_toTopOf="@+id/btn_foto_detail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/text_jalan_detail"
+        tools:listitem="@layout/item_image_detail" />
 
     <Button
         android:id="@+id/btn_foto_detail"

@@ -45,4 +45,6 @@
     <string name="tambahkan_foto_detail">Tambahkan Foto Detail</string>
     <string name="gambar_detail_kerusakan">gambar detail kerusakan</string>
     <string name="lokasi_saya">Lokasi Saya</string>
+    <string name="ambil_foto_kerusakan_jalan_lebih_dekat">Ambil Foto Kerusakan Jalan Lebih Dekat</string>
+    <string name="ambil_foto_kerusakan_jalan">Ambil Foto Kerusakan Jalan</string>
 </resources>

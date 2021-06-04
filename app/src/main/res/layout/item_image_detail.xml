@@ -6,11 +6,12 @@
 
     <ImageView
         android:id="@+id/item_image_detail"
-        android:layout_width="75dp"
-        android:layout_height="100dp"
-        android:src="@android:color/darker_gray"
+        android:layout_width="94dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:contentDescription="@string/gambar_detail_kerusakan"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        android:src="@android:color/darker_gray"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -19,6 +20,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="91dp" />
+        app:layout_constraintGuide_begin="165dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
