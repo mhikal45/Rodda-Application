@@ -32,7 +32,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpRecyclerView(){
-        val query : Query = firebaseFirestore.collection("results").orderBy("waktu", Query.Direction.DESCENDING)
+        val query : Query = firebaseFirestore.collection("results").orderBy("time", Query.Direction.DESCENDING)
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<ResultModel> = FirestoreRecyclerOptions.Builder<ResultModel>()
             .setQuery(query, ResultModel::class.java)
             .build()

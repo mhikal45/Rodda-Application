@@ -30,9 +30,11 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.RoddaApplication.NoActionBar"/>
-        <activity android:name=".ui.um.register.RegistrerFormActivity" />
-        <activity android:name=".ui.um.login.LoginActivity" />
-        <activity android:name=".ui.dataform.DataFormActivity"/>
+        <activity android:name=".ui.um.register.RegistrerFormActivity"
+            android:theme="@style/Theme.RoddaApplication.NoActionBar"/>
+        <activity android:name=".ui.um.login.LoginActivity"
+            android:theme="@style/Theme.RoddaApplication.NoActionBar"/>
+        <activity android:name=".ui.dataform.DataFormActivity" />
         <activity android:name=".ui.imagedetail.ImageDetailActivity" />
         <activity android:name=".ui.imagemain.ImageMainActivity" />
         <provider

@@ -7,12 +7,6 @@ import com.rodda.roddaapplication.R
 class LoadingDialog(val mActivity: Activity){
     private lateinit var dialog: AlertDialog
 
-    companion object{
-        fun getInstance(title: String){
-
-        }
-    }
-
     fun startDialog(){
         val builder = AlertDialog.Builder(mActivity)
         val inflater  = mActivity.layoutInflater
