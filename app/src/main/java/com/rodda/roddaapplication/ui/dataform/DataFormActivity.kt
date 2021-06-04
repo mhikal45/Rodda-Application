@@ -47,7 +47,6 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
     private var storageReference : StorageReference? = null
     private var firestore : FirebaseFirestore? = null
     private val uploadUrl = ArrayList<String>()
-    private var id = ""
     private var fullName : String? = "Hikal"
     private var time = SimpleDateFormat("dd:MM:yyyy_HH:mm:ss",Locale("Indonesia")).format(Date())
     private var location : String? = "Tegal"
@@ -76,9 +75,9 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
         firestore = FirebaseFirestore.getInstance()
         storageReference = storage!!.reference
 
-        id = firebaseAuth?.currentUser?.uid.toString()
+        val id = firebaseAuth?.currentUser?.uid
 
-        val documentReference = firestore?.collection("user")?.document(id)
+        val documentReference = firestore?.collection("users")?.document(id.toString())
         documentReference?.get()?.addOnSuccessListener {
             fullName = it.getString("fullName")
         }
@@ -154,18 +153,18 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
              R.id.btn_kirim-> {
                 activityDataFormBinding.progressbar.visibility = View.VISIBLE
                 if (imageMain != null && imageDetail.isNotEmpty()) {
-                    val mainRef = storageReference!!.child("images/"+fullName+"_"+imageMain)
+                    val mainRef = storageReference!!.child("images/$fullName/$imageMain")
                     mainRef.putFile(Uri.fromFile(File(imageMain!!))).addOnSuccessListener {
                         mainRef.downloadUrl.addOnCompleteListener {
-                            uploadUrl.add(it.toString())
+                            uploadUrl.add(it.result.toString())
                         }
                     }
                     for (i in imageDetail) {
-                        val imageRef = storageReference!!.child("images/"+fullName+"_"+i)
+                        val imageRef = storageReference!!.child("images/$fullName/$i")
                         imageRef.putFile(Uri.fromFile(File(i))).addOnSuccessListener {
                             imageRef.downloadUrl.addOnCompleteListener {
-                                uploadUrl.add(it.toString())
-                                if (uploadUrl.size == imageDetail.size) {
+                                uploadUrl.add(it.result.toString())
+                                if (uploadUrl.size == imageDetail.size+1) {
                                     activityDataFormBinding.progressbar.visibility = View.INVISIBLE
                                     dataViewModel.postReport(fullName!!,location!!,time,uploadUrl)
                                     Toast.makeText(this,"Berhasil Mengirim Laporan",Toast.LENGTH_SHORT).show()

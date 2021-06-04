@@ -1,38 +1,37 @@
 package com.rodda.roddaapplication.ui.dataform
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.rodda.roddaapplication.model.network.ApiConfig
+import com.rodda.roddaapplication.model.response.ReportResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class DataFormViewModel : ViewModel() {
+    fun postReport (fullName : String, location : String, time : String, image : List<String>) {
 
-    private val _fullName = MutableLiveData<String>()
-    private val _location = MutableLiveData<String>()
-    private val _time = MutableLiveData<String>()
-    private val _image = MutableLiveData<List<String>>()
+        val responseBody = ReportResponse(
+            image,fullName,location, time
+        )
 
+        val response = ApiConfig().getApiServices().postReport(responseBody)
 
-    fun postReport (fullName : String,location : String,time : String,image : List<String>) {
-        val client = com.rodda.roddaapplication.model.network.ApiConfig()
-            .getApiServices().postReport(fullName,location,time,image)
-        client.enqueue(object : Callback<com.rodda.roddaapplication.model.response.ReportResponse> {
+        response.enqueue(object : Callback<ReportResponse> {
             override fun onResponse(
-                call: Call<com.rodda.roddaapplication.model.response.ReportResponse>,
-                response: Response<com.rodda.roddaapplication.model.response.ReportResponse>
+                call: Call<ReportResponse>,
+                response: Response<ReportResponse>
             ) {
                 if (response.isSuccessful) {
-                    _fullName.value = response.body()?.fullName
-                    _location.value = response.body()?.location
-                    _time.value = response.body()?.time
-                    _image.value = response.body()?.images
+                    Log.d("json",response.body().toString())
+                    Log.d("success","Berhasil dikirim")
+                } else {
+                    Log.d("onFailure",response.message())
                 }
             }
 
-            override fun onFailure(call: Call<com.rodda.roddaapplication.model.response.ReportResponse>, t: Throwable) {
-                Log.d ("OnFailure :",t.message.toString())
+            override fun onFailure(call: Call<ReportResponse>, t: Throwable) {
+                Log.d("onFailure",t.message.toString())
             }
 
         })

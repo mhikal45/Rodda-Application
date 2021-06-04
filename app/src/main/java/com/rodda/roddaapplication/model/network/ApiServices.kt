@@ -2,17 +2,11 @@ package com.rodda.roddaapplication.model.network
 
 import com.rodda.roddaapplication.model.response.ReportResponse
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiServices {
-    @FormUrlEncoded
-    @POST("predict")
-    fun postReport (
-        @Field("fullName") fullName : String,
-        @Field("location") location : String,
-        @Field("time") time : String,
-        @Field("images") images : List<String>
-    ) : Call<ReportResponse>
+
+    @POST("/predict")
+    @Headers("Content-Type:application/json")
+    fun postReport (@Body reportResponse: ReportResponse) : Call<ReportResponse>
 }
