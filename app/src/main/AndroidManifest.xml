@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.rodda.roddaapplication" >
+    package="com.rodda.roddaapplication">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="true" />
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true"/>
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
-        android:theme="@style/Theme.RoddaApplication"
-        android:usesCleartextTraffic="true" >
+        android:theme="@style/Theme.RoddaApplication">
         <activity
             android:name=".splash.SplashActivity"
-            android:theme="@style/splash" >
+            android:theme="@style/splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,26 +29,23 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.RoddaApplication.NoActionBar" />
-        <activity
-            android:name=".ui.um.register.RegistrerFormActivity"
-            android:theme="@style/Theme.RoddaApplication.NoActionBar" />
-        <activity
-            android:name=".ui.um.login.LoginActivity"
-            android:theme="@style/Theme.RoddaApplication.NoActionBar" />
+            android:theme="@style/Theme.RoddaApplication.NoActionBar"/>
+        <activity android:name=".ui.um.register.RegistrerFormActivity"
+            android:theme="@style/Theme.RoddaApplication.NoActionBar"/>
+        <activity android:name=".ui.um.login.LoginActivity"
+            android:theme="@style/Theme.RoddaApplication.NoActionBar"/>
         <activity android:name=".ui.dataform.DataFormActivity" />
         <activity android:name=".ui.imagedetail.ImageDetailActivity" />
         <activity android:name=".ui.imagemain.ImageMainActivity" />
-
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.rodda.roddaapplication"
-            android:enabled="true"
             android:exported="false"
-            android:grantUriPermissions="true" >
+            android:enabled="true"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
+                android:resource="@xml/file_paths"/>
         </provider>
     </application>
 
