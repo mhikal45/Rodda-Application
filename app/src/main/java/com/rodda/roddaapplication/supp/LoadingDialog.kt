@@ -8,49 +8,52 @@ import com.rodda.roddaapplication.R
 import com.rodda.roddaapplication.databinding.LoadingScreenBinding
 
 class LoadingDialog(private val mActivity: Activity){
-    private lateinit var dialog: AlertDialog
 
     private val loadingScreenBinding = LoadingScreenBinding.inflate(mActivity.layoutInflater)
 
+    private val dialog = AlertDialog.Builder(mActivity)
+        .setView(loadingScreenBinding.root)
+        .create()
+
 
     fun startDialog(){
-        val builder = AlertDialog.Builder(mActivity)
-        builder.setView(loadingScreenBinding.root)
-        builder.setCancelable(false)
-        dialog = builder.create()
+        dialog.setCancelable(false)
         dialog.show()
     }
 
     @SuppressLint("SetTextI18n")
     fun startReportDialog(text : String){
+        loadingScreenBinding.pbLoading.visibility = View.VISIBLE
+        loadingScreenBinding.imgState.visibility = View.INVISIBLE
         loadingScreenBinding.tvLoading.text = text
-        val builder = AlertDialog.Builder(mActivity)
-        builder.setView(loadingScreenBinding.root)
-        builder.setCancelable(false)
-        dialog = builder.create()
+        dialog.setCancelable(false)
         dialog.show()
     }
 
     @SuppressLint("SetTextI18n")
-    fun finishDialog(state : Boolean) {
+    fun finishDialog(state : Boolean,text: String) {
         loadingScreenBinding.pbLoading.visibility = View.INVISIBLE
         loadingScreenBinding.imgState.visibility = View.VISIBLE
-        loadingScreenBinding.btnClear.visibility = View.VISIBLE
         if (state) {
+            loadingScreenBinding.btnClear.visibility = View.VISIBLE
             loadingScreenBinding.imgState.setImageResource(R.drawable.ic_baseline_check_24)
-            loadingScreenBinding.tvLoading.text = "Laporan Anda Berhasil Dikirim"
+            loadingScreenBinding.tvLoading.text = text
         } else {
             loadingScreenBinding.imgState.setImageResource(R.drawable.ic_baseline_close_24)
-            loadingScreenBinding.tvLoading.text = "Terjadi Kesalahan, Coba Lagi Nanti"
+            loadingScreenBinding.tvLoading.text = text
         }
         loadingScreenBinding.btnClear.setOnClickListener {
             dialog.dismiss()
             mActivity.finish()
         }
+        dialog.setCancelable(true)
         dialog.show()
     }
 
     fun dismissDialog(){
         dialog.dismiss()
     }
+    //"Terjadi Kesalahan Saat Mengirim Laporan"
+    //,"Terjadi Kesalahan Saat Mengupload Gambar"
+    //,,"Mohon Isi Kolom Lokasi"
 }

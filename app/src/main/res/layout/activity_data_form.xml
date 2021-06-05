@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.dataform.DataFormActivity">
 
-    <ProgressBar
-        android:visibility="invisible"
-        android:id="@+id/progressbar"
-        style="@android:style/Widget.ProgressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/tv_lokasi"
         android:layout_width="0dp"
@@ -54,37 +43,10 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:text="@string/lokasi_saya"
-        app:layout_constraintBottom_toTopOf="@+id/tv_catatan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_lokasi" />
 
-    <TextView
-        android:id="@+id/tv_catatan"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/et_catatan"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/catatan"
-        android:textSize="13sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_lokasi" />
 
-    <EditText
-        android:id="@+id/et_catatan"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:autofillHints="Tambahkan Catatan (optional)"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_catatan" />
 
     <Button
         android:id="@+id/btn_kirim"

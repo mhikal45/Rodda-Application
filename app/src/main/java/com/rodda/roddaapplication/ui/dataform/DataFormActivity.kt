@@ -50,9 +50,9 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
     private var storageReference : StorageReference? = null
     private var firestore : FirebaseFirestore? = null
     private val uploadUrl = ArrayList<String>()
-    private var fullName : String? = "Hikal"
+    private var fullName : String? = ""
     private var time = SimpleDateFormat("dd:MM:yyyy_HH:mm:ss",Locale("Indonesia")).format(Date())
-    private var location : String? = "Tegal"
+    private var location = ""
 
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(p0: LocationResult) {
@@ -158,8 +158,8 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
              R.id.btn_kirim-> {
-                 loadingDialog.startReportDialog("Mengupload Gambar...")
-                if (imageMain != null && imageDetail.isNotEmpty()) {
+                 if (imageMain != null && imageDetail.isNotEmpty() && location.isNotEmpty()){
+                    loadingDialog.startReportDialog("Mengupload Gambar...")
                     val mainRef = storageReference!!.child("images/$fullName/$imageMain")
                     mainRef.putFile(Uri.fromFile(File(imageMain!!))).addOnSuccessListener {
                         mainRef.downloadUrl.addOnCompleteListener {
@@ -172,19 +172,23 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
                             imageRef.downloadUrl.addOnCompleteListener {
                                 uploadUrl.add(it.result.toString())
                                 if (uploadUrl.size == imageDetail.size+1) {
-                                    dataViewModel.postReport(fullName!!,location!!,time,uploadUrl)
-                                    loadingDialog.finishDialog(true)
+                                    dataViewModel.postReport(fullName!!,location,time,uploadUrl)
+                                    loadingDialog.finishDialog(true,"Terjadi Kesalahan Saat Mengirim Laporan")
                                 }
                             }.addOnCanceledListener {
-                                loadingDialog.finishDialog(false)
+                                loadingDialog.finishDialog(false,"Terjadi Kesalahan Saat Mengupload Gambar")
                             }
                         }.addOnFailureListener{
-                            loadingDialog.finishDialog(false)
+                            loadingDialog.finishDialog(false,"Terjadi Kesalahan Saat Mengupload Gambar")
                             Log.d("Gagal upload",it.message!!)
                         }
                     }
                 }
-            }
+                 else if (location.isEmpty()){
+                         activityDataFormBinding.etLokasi.error = "Bagian ini Tidak Boleh Kosong"
+                     }
+
+             }
             R.id.btn_location-> {
                 try {
                     requestPermission()
