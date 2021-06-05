@@ -35,6 +35,7 @@
         <activity android:name=".ui.um.login.LoginActivity"
             android:theme="@style/Theme.RoddaApplication.NoActionBar"/>
         <activity android:name=".ui.dataform.DataFormActivity" />
+        <activity android:name=".ui.detail.DetailActivity"/>
         <activity android:name=".ui.imagedetail.ImageDetailActivity" />
         <activity android:name=".ui.imagemain.ImageMainActivity" />
         <provider
