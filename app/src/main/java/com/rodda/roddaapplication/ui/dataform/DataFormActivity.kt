@@ -2,6 +2,7 @@ package com.rodda.roddaapplication.ui.dataform
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
@@ -20,8 +21,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.rodda.roddaapplication.MainActivity
 import com.rodda.roddaapplication.R
 import com.rodda.roddaapplication.databinding.ActivityDataFormBinding
+import com.rodda.roddaapplication.supp.LoadingDialog
 import java.io.File
 import java.lang.Exception
 import java.text.SimpleDateFormat
@@ -59,10 +62,14 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    private lateinit var loadingDialog: LoadingDialog
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityDataFormBinding = ActivityDataFormBinding.inflate(layoutInflater)
         setContentView(activityDataFormBinding.root)
+
+        loadingDialog = LoadingDialog(this)
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -151,7 +158,7 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
              R.id.btn_kirim-> {
-                activityDataFormBinding.progressbar.visibility = View.VISIBLE
+                 loadingDialog.startReportDialog("Mengupload Gambar...")
                 if (imageMain != null && imageDetail.isNotEmpty()) {
                     val mainRef = storageReference!!.child("images/$fullName/$imageMain")
                     mainRef.putFile(Uri.fromFile(File(imageMain!!))).addOnSuccessListener {
@@ -165,18 +172,15 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
                             imageRef.downloadUrl.addOnCompleteListener {
                                 uploadUrl.add(it.result.toString())
                                 if (uploadUrl.size == imageDetail.size+1) {
-                                    activityDataFormBinding.progressbar.visibility = View.INVISIBLE
                                     dataViewModel.postReport(fullName!!,location!!,time,uploadUrl)
-                                    Toast.makeText(this,"Berhasil Mengirim Laporan",Toast.LENGTH_SHORT).show()
+                                    loadingDialog.finishDialog(true)
                                 }
                             }.addOnCanceledListener {
-                                activityDataFormBinding.progressbar.visibility = View.INVISIBLE
-                                Toast.makeText(this,"Gagal mendapatkan link",Toast.LENGTH_SHORT).show()
+                                loadingDialog.finishDialog(false)
                             }
                         }.addOnFailureListener{
-                            activityDataFormBinding.progressbar.visibility = View.INVISIBLE
+                            loadingDialog.finishDialog(false)
                             Log.d("Gagal upload",it.message!!)
-                            Toast.makeText(this,it.message,Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
