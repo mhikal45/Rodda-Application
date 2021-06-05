@@ -1,6 +1,7 @@
 package com.rodda.roddaapplication.ui.home
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.rodda.roddaapplication.R
 import com.rodda.roddaapplication.databinding.ListReportBinding
 import com.rodda.roddaapplication.model.ResultModel
+import com.rodda.roddaapplication.ui.detail.DetailActivity
+import com.rodda.roddaapplication.ui.detail.DetailActivity.Companion.IMG_ID
 
 class HomeAdapter(options: FirestoreRecyclerOptions<ResultModel>) :
     FirestoreRecyclerAdapter<ResultModel, HomeAdapter.ResultsViewHolder>(options) {
@@ -39,6 +42,11 @@ class HomeAdapter(options: FirestoreRecyclerOptions<ResultModel>) :
                 binding.imgCracked.visibility = View.VISIBLE
             }else if(result.predictions?.contains("Plothole") == true){
                 binding.imgHole.visibility = View.VISIBLE
+            }
+            itemView.setOnClickListener{
+                val intent = Intent(itemView.context, DetailActivity::class.java)
+                intent.putExtra(IMG_ID, result.images)
+                it.context.startActivity(intent)
             }
         }
     }
