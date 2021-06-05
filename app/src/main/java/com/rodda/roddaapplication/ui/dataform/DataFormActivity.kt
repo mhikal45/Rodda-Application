@@ -196,5 +196,11 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    override fun finish() {
+        val intent = Intent(this,MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
+        super.finish()
+    }
 
 }
