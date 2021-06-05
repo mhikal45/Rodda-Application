@@ -32,7 +32,7 @@ class DetailTrialActivity : AppCompatActivity() {
         val documentReference = firestore.collection("results").document(docID)
         documentReference.get()
             .addOnSuccessListener {
-                Log.d("SUCCESS", "${it.getString("location")}")
+                Log.d("SUCCESS", "${it.getString("images")}")
                 binding.locationTVV.text = it.getString("location")
 
             }.addOnFailureListener{

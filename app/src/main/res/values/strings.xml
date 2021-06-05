@@ -33,7 +33,7 @@
     <string name="ask_logout">Are you sure want to Log Out?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Loading…</string>
 
     <string name="lokasi">Lokasi</string>
     <string name="catatan">Catatan</string>
@@ -48,4 +48,5 @@
     <string name="ambil_foto_kerusakan_jalan_lebih_dekat">Ambil Foto Kerusakan Jalan Lebih Dekat</string>
     <string name="ambil_foto_kerusakan_jalan">Ambil Foto Kerusakan Jalan</string>
     <string name="checklist_sukses">Checklist sukses</string>
+    <string name="kembali">Kembali</string>
 </resources>
