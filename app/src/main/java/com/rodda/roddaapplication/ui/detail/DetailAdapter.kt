@@ -29,15 +29,12 @@ FirestoreRecyclerAdapter<ResultModel, DetailAdapter.DetailViewHolder>(options){
         fun bind(result: ResultModel){
             with(binding) {
                 Glide.with(itemView.context)
-                    .load(result.images?.get(adapterPosition + 1))
+                    .load(result.images)
                     .into(imgDetailPhoto)
-                tvPredictions.text = result.predictions?.get(adapterPosition)
-                tvPredictionsAcc.text = result.predictions_acc?.get(adapterPosition).toString()
+                tvPredictions.text = result.predictions.toString()
+                tvPredictionsAcc.text = result.predictions_acc.toString()
             }
         }
     }
-
-
-
 
 }

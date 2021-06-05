@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.firebase.firestore.DocumentSnapshot
 import com.rodda.roddaapplication.R
 import com.rodda.roddaapplication.databinding.ListReportBinding
 import com.rodda.roddaapplication.model.ResultModel
@@ -17,6 +18,7 @@ import com.rodda.roddaapplication.ui.detail.DetailActivity.Companion.IMG_ID
 
 class HomeAdapter(options: FirestoreRecyclerOptions<ResultModel>) :
     FirestoreRecyclerAdapter<ResultModel, HomeAdapter.ResultsViewHolder>(options) {
+    private lateinit var onItemClickCallback : OnItemClickCallback
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_report, parent, false)
@@ -44,10 +46,16 @@ class HomeAdapter(options: FirestoreRecyclerOptions<ResultModel>) :
                 binding.imgHole.visibility = View.VISIBLE
             }
             itemView.setOnClickListener{
-                val intent = Intent(itemView.context, DetailActivity::class.java)
-                intent.putExtra(IMG_ID, result.images)
-                it.context.startActivity(intent)
+                onItemClickCallback.onItemClicked(snapshots.getSnapshot(adapterPosition), adapterPosition)
             }
         }
+    }
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
+    interface OnItemClickCallback{
+        fun onItemClicked(documentSnapshot: DocumentSnapshot, position: Int)
     }
 }

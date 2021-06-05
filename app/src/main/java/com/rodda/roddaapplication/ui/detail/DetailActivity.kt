@@ -1,11 +1,14 @@
 package com.rodda.roddaapplication.ui.detail
 
+import android.content.ClipData
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.rodda.roddaapplication.R
 import com.rodda.roddaapplication.databinding.ActivityDetailBinding
 import com.rodda.roddaapplication.model.ResultModel
 
@@ -25,11 +28,13 @@ class DetailActivity : AppCompatActivity() {
 
         firestore = FirebaseFirestore.getInstance()
 
+
         setUpRecyclerView()
     }
 
-    private fun setUpRecyclerView() {
-        val query : Query = firestore.collection("results").whereArrayContains("images", IMG_ID)
+    fun setUpRecyclerView() {
+        val imgID:String = intent.getStringExtra(IMG_ID).toString()
+        val query : Query = firestore.collection("results").whereArrayContains("images", imgID)
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<ResultModel> = FirestoreRecyclerOptions.Builder<ResultModel>()
             .setQuery(query, ResultModel::class.java)
             .build()
@@ -39,4 +44,5 @@ class DetailActivity : AppCompatActivity() {
         binding.rvDetailImage.layoutManager = GridLayoutManager(this, 3)
         binding.rvDetailImage.adapter = adapter
     }
+
 }
