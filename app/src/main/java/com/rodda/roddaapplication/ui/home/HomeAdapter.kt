@@ -13,8 +13,6 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.rodda.roddaapplication.R
 import com.rodda.roddaapplication.databinding.ListReportBinding
 import com.rodda.roddaapplication.model.ResultModel
-import com.rodda.roddaapplication.ui.detail.DetailActivity
-import com.rodda.roddaapplication.ui.detail.DetailActivity.Companion.IMG_ID
 
 class HomeAdapter(options: FirestoreRecyclerOptions<ResultModel>) :
     FirestoreRecyclerAdapter<ResultModel, HomeAdapter.ResultsViewHolder>(options) {

@@ -14,8 +14,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.rodda.roddaapplication.databinding.FragmentHomeBinding
 import com.rodda.roddaapplication.model.ResultModel
-import com.rodda.roddaapplication.ui.detail.DetailTrialActivity
-import com.rodda.roddaapplication.ui.detail.DetailTrialActivity.Companion.DOC_ID
+import com.rodda.roddaapplication.ui.detail.DetailActivity
+import com.rodda.roddaapplication.ui.detail.DetailActivity.Companion.DOC_ID
 
 class HomeFragment : Fragment() {
 
@@ -50,7 +50,7 @@ class HomeFragment : Fragment() {
         adapter.setOnItemClickCallback(object: HomeAdapter.OnItemClickCallback{
             override fun onItemClicked(documentSnapshot: DocumentSnapshot, position: Int) {
                 val docID = documentSnapshot.id
-                val intent = Intent(activity, DetailTrialActivity::class.java)
+                val intent = Intent(activity, DetailActivity::class.java)
                 intent.putExtra(DOC_ID, docID)
                 startActivity(intent)
             }

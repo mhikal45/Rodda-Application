@@ -17,7 +17,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RoddaApplication"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.detail.DetailTrialActivity"></activity>
         <activity
             android:name=".splash.SplashActivity"
             android:theme="@style/splash">

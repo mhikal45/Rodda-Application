@@ -1,20 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.detail.DetailActivity">
+    android:background="@color/grey">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_detailImage"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/list_detail_grid"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
+        android:padding="32dp"
+        tools:context=".ui.detail.DetailTrialActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/img_details1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/grey" />
+
+        <TextView
+            android:id="@+id/tv_predictions1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="@id/img_details1"
+            app:layout_constraintStart_toStartOf="@id/img_details1"
+            app:layout_constraintTop_toBottomOf="@id/img_details1"
+            tools:text="Cracked" />
+
+        <TextView
+            android:id="@+id/tv_predictions_acc1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:maxLength="4"
+            app:layout_constraintEnd_toEndOf="@id/tv_predictions1"
+            app:layout_constraintStart_toStartOf="@id/tv_predictions1"
+            app:layout_constraintTop_toBottomOf="@id/tv_predictions1"
+            tools:text="1.000" />
+
+        <ImageView
+            android:id="@+id/img_details2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toStartOf="@id/img_details3"
+            app:layout_constraintStart_toEndOf="@id/img_details1"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/grey" />
+
+        <TextView
+            android:id="@+id/tv_predictions2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="@id/img_details2"
+            app:layout_constraintStart_toStartOf="@id/img_details2"
+            app:layout_constraintTop_toBottomOf="@id/img_details2"
+            tools:text="Cracked" />
+
+        <TextView
+            android:id="@+id/tv_predictions_acc2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:maxLength="4"
+            app:layout_constraintEnd_toEndOf="@id/tv_predictions2"
+            app:layout_constraintStart_toStartOf="@id/tv_predictions2"
+            app:layout_constraintTop_toBottomOf="@id/tv_predictions2"
+            tools:text="1.000" />
+
+        <ImageView
+            android:id="@+id/img_details3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/grey" />
+
+        <TextView
+            android:id="@+id/tv_predictions3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="@id/img_details3"
+            app:layout_constraintStart_toStartOf="@id/img_details3"
+            app:layout_constraintTop_toBottomOf="@id/img_details3"
+            tools:text="Cracked" />
+
+        <TextView
+            android:id="@+id/tv_predictions_acc3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:maxLength="4"
+            app:layout_constraintEnd_toEndOf="@id/tv_predictions3"
+            app:layout_constraintStart_toStartOf="@id/tv_predictions3"
+            app:layout_constraintTop_toBottomOf="@id/tv_predictions3"
+            tools:text="1.000" />
+
+        <ImageView
+            android:id="@+id/img_details4"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@id/tv_predictions_acc1"
+            app:layout_constraintTop_toBottomOf="@id/guideline3"
+            tools:background="@color/grey" />
+
+        <TextView
+            android:id="@+id/tv_predictions4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="@id/img_details4"
+            app:layout_constraintStart_toStartOf="@id/img_details4"
+            app:layout_constraintTop_toBottomOf="@id/img_details4"
+            tools:text="Cracked" />
+
+        <TextView
+            android:id="@+id/tv_predictions_acc4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:maxLength="4"
+            app:layout_constraintEnd_toEndOf="@id/tv_predictions4"
+            app:layout_constraintStart_toStartOf="@id/tv_predictions4"
+            app:layout_constraintTop_toBottomOf="@id/tv_predictions4"
+            tools:text="1.000" />
+
+        <ImageView
+            android:id="@+id/img_details5"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_predictions_acc3"
+            app:layout_constraintStart_toEndOf="@+id/img_details4"
+            app:layout_constraintTop_toTopOf="@+id/guideline3"
+            tools:background="@color/grey" />
+
+        <TextView
+            android:id="@+id/tv_predictions5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="@id/img_details5"
+            app:layout_constraintStart_toStartOf="@id/img_details5"
+            app:layout_constraintTop_toBottomOf="@id/img_details5"
+            tools:text="Cracked" />
+
+        <TextView
+            android:id="@+id/tv_predictions_acc5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:maxLength="4"
+            app:layout_constraintEnd_toEndOf="@id/tv_predictions5"
+            app:layout_constraintStart_toStartOf="@id/tv_predictions5"
+            app:layout_constraintTop_toBottomOf="@id/tv_predictions5"
+            tools:text="1.000" />
+
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/bg_text_rounded"
+            android:drawablePadding="2dp"
+            android:padding="16dp"
+            app:drawableStartCompat="@drawable/ic_baseline_location_on_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline4"
+            tools:text="Location" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="167dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_predictions_acc1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="342dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
