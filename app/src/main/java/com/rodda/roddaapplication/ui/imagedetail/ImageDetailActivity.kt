@@ -65,7 +65,6 @@ class ImageDetailActivity : AppCompatActivity() {
                         storageDir
                     ).apply {
                         currentPhotoPath = absolutePath
-                        count++
                     }
                 } catch (e : IOException) {
                     Toast.makeText(this,e.message, Toast.LENGTH_SHORT).show()
