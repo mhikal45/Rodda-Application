@@ -8,10 +8,8 @@
         android:id="@+id/item_image_detail"
         android:layout_width="94dp"
         android:layout_height="125dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:contentDescription="@string/gambar_detail_kerusakan"
-        android:src="@android:color/darker_gray"
+        android:src="@drawable/image_temp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,6 +18,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="165dp" />
+        app:layout_constraintGuide_begin="133dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -46,7 +46,9 @@
     <string name="gambar_detail_kerusakan">gambar detail kerusakan</string>
     <string name="lokasi_saya">Lokasi Saya</string>
     <string name="ambil_foto_kerusakan_jalan_lebih_dekat">Ambil Foto Kerusakan Jalan Lebih Dekat</string>
-    <string name="ambil_foto_kerusakan_jalan">Ambil Foto Kerusakan Jalan</string>
+    <string name="ambil_foto_kerusakan_jalan">Ambil Foto Jalan Yang Rusak</string>
     <string name="checklist_sukses">Checklist sukses</string>
     <string name="kembali">Kembali</string>
+    <string name="jalan_utama">Jalan Utama</string>
+    <string name="kerusakan_jalan">Kerusakan Jalan</string>
 </resources>
