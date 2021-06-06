@@ -35,20 +35,20 @@
     <string name="no">No</string>
     <string name="loading">Loading…</string>
 
-    <string name="lokasi">Lokasi</string>
+    <string name="lokasi">Location</string>
     <string name="catatan">Catatan</string>
     <string name="gambar_jalanan_yang_rusak">Gambar jalanan yang rusak</string>
-    <string name="kirimkan_laporan">Kirimkan Laporan</string>
-    <string name="tambahkan_foto">Tambahkan Foto</string>
-    <string name="selanjutnya">Selanjutnya</string>
+    <string name="kirimkan_laporan">Send Report</string>
+    <string name="tambahkan_foto">Add Picture</string>
+    <string name="selanjutnya">Next</string>
     <string name="ini_merupakan_gambar_jalan">Ini merupakan gambar jalan</string>
-    <string name="tambahkan_foto_detail">Tambahkan Foto Detail</string>
+    <string name="tambahkan_foto_detail">Add More Detail Picture</string>
     <string name="gambar_detail_kerusakan">gambar detail kerusakan</string>
-    <string name="lokasi_saya">Lokasi Saya</string>
-    <string name="ambil_foto_kerusakan_jalan_lebih_dekat">Ambil Foto Kerusakan Jalan Lebih Dekat</string>
-    <string name="ambil_foto_kerusakan_jalan">Ambil Foto Jalan Yang Rusak</string>
+    <string name="lokasi_saya">My Location</string>
+    <string name="ambil_foto_kerusakan_jalan_lebih_dekat">Take a Picture of Damaged Road More Closer</string>
+    <string name="ambil_foto_kerusakan_jalan">Take a Picture of Damaged Road</string>
     <string name="checklist_sukses">Checklist sukses</string>
     <string name="kembali">Kembali</string>
-    <string name="jalan_utama">Jalan Utama</string>
-    <string name="kerusakan_jalan">Kerusakan Jalan</string>
+    <string name="jalan_utama">Main Road</string>
+    <string name="kerusakan_jalan">Damaged Road</string>
 </resources>

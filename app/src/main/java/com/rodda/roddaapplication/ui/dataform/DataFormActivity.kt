@@ -130,7 +130,7 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
                     }
                 }
             } else {
-                Toast.makeText(this,"Silahkan nyalakan GPS anda terlebih dahulu",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Please Turn On Your GPS",Toast.LENGTH_SHORT).show()
             }
         }
         else {
@@ -159,7 +159,7 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
         when (v?.id) {
              R.id.btn_kirim-> {
                  if (imageMain != null && imageDetail.isNotEmpty() && location.isNotEmpty()){
-                    loadingDialog.startReportDialog("Mengupload Gambar...")
+                    loadingDialog.startReportDialog("Uploading Pictures...")
                     val mainRef = storageReference!!.child("images/$fullName/$imageMain")
                     mainRef.putFile(Uri.fromFile(File(imageMain!!))).addOnSuccessListener {
                         mainRef.downloadUrl.addOnCompleteListener {
@@ -173,19 +173,19 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
                                 uploadUrl.add(it.result.toString())
                                 if (uploadUrl.size == imageDetail.size+1) {
                                     dataViewModel.postReport(fullName!!,location,time,uploadUrl)
-                                    loadingDialog.finishDialog(true,"Laporan Anda Berhasil Dikirim")
+                                    loadingDialog.finishDialog(true,"Report Successfully Send")
                                 }
                             }.addOnCanceledListener {
-                                loadingDialog.finishDialog(false,"Terjadi Kesalahan Saat Mengirim Laporan")
+                                loadingDialog.finishDialog(false,"Failed to Send Report, Try Again Later")
                             }
                         }.addOnFailureListener{
-                            loadingDialog.finishDialog(false,"Terjadi Kesalahan Saat Mengupload Gambar")
+                            loadingDialog.finishDialog(false,"Failed to Upload Pictures, Try Again Later")
                             Log.d("Gagal upload",it.message!!)
                         }
                     }
                 }
                  else if (location.isEmpty()){
-                         activityDataFormBinding.etLokasi.error = "Bagian ini Tidak Boleh Kosong"
+                         activityDataFormBinding.etLokasi.error = "This Section Cannot be Blank"
                      }
 
              }
