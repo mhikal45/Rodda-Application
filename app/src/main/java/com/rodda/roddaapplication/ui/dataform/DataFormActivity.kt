@@ -173,10 +173,10 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
                                 uploadUrl.add(it.result.toString())
                                 if (uploadUrl.size == imageDetail.size+1) {
                                     dataViewModel.postReport(fullName!!,location,time,uploadUrl)
-                                    loadingDialog.finishDialog(true,"Terjadi Kesalahan Saat Mengirim Laporan")
+                                    loadingDialog.finishDialog(true,"Laporan Anda Berhasil Dikirim")
                                 }
                             }.addOnCanceledListener {
-                                loadingDialog.finishDialog(false,"Terjadi Kesalahan Saat Mengupload Gambar")
+                                loadingDialog.finishDialog(false,"Terjadi Kesalahan Saat Mengirim Laporan")
                             }
                         }.addOnFailureListener{
                             loadingDialog.finishDialog(false,"Terjadi Kesalahan Saat Mengupload Gambar")
