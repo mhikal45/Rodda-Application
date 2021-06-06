@@ -124,12 +124,12 @@ class RegistrerFormActivity : AppCompatActivity(), View.OnClickListener {
                             }
                         }
                     loadingDialog.dismissDialog()
-                    Toast.makeText(this, "Berhasil Register", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Register Success", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 } else {
                     loadingDialog.dismissDialog()
-                    Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Register Failed", Toast.LENGTH_SHORT).show()
                 }
             }
     }

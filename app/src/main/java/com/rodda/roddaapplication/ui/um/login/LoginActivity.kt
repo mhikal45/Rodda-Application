@@ -50,7 +50,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             return
         }
         if(password.isEmpty()){
-            loginBinding.editPassword.text.toString()
+            loginBinding.editPassword.error = "Required"
             return
         }
 
@@ -61,11 +61,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 if (it.isSuccessful) {
                     loadingDialog.dismissDialog()
                     startActivity(Intent(this, MainActivity::class.java))
-                    Toast.makeText(this, "Berhasil", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
 
                 } else {
                     loadingDialog.dismissDialog()
-                    Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
                 }
             }
 

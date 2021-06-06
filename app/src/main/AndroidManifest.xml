@@ -29,15 +29,20 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.RoddaApplication.NoActionBar"/>
+            android:theme="@style/Theme.RoddaApplication.NoActionBar"
+            android:launchMode="singleTop"/>
         <activity android:name=".ui.um.register.RegistrerFormActivity"
             android:theme="@style/Theme.RoddaApplication.NoActionBar"/>
         <activity android:name=".ui.um.login.LoginActivity"
             android:theme="@style/Theme.RoddaApplication.NoActionBar"/>
-        <activity android:name=".ui.dataform.DataFormActivity" />
-        <activity android:name=".ui.detail.DetailActivity"/>
-        <activity android:name=".ui.imagedetail.ImageDetailActivity" />
-        <activity android:name=".ui.imagemain.ImageMainActivity" />
+        <activity android:name=".ui.dataform.DataFormActivity"
+            android:theme="@style/Theme.RoddaApplication.NoActionBar"/>
+        <activity android:name=".ui.detail.DetailActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".ui.imagedetail.ImageDetailActivity"
+            android:theme="@style/Theme.RoddaApplication.NoActionBar"/>
+        <activity android:name=".ui.imagemain.ImageMainActivity"
+            android:theme="@style/Theme.RoddaApplication.NoActionBar"/>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.rodda.roddaapplication"
@@ -48,6 +53,13 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"/>
         </provider>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity" />
     </application>
 
 </manifest>

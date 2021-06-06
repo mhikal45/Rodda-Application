@@ -32,12 +32,13 @@ class ImageDetailActivity : AppCompatActivity() {
     private lateinit var currentPhotoPath : String
     private lateinit var imageAdapter : ImageDetailAdapter
     private val imageDetail = ArrayList<String>()
+    private var count: Int = 1
 
     private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
         if (result.resultCode == Activity.RESULT_OK) {
             imageDetail.add(currentPhotoPath)
             imageAdapter.addToList(currentPhotoPath)
-            imageDetailBinding.btnNextForm.visibility = View.VISIBLE
+            imageDetailBinding.btnNextForm.isEnabled = true
         }
     }
 
@@ -64,6 +65,7 @@ class ImageDetailActivity : AppCompatActivity() {
                         storageDir
                     ).apply {
                         currentPhotoPath = absolutePath
+                        count++
                     }
                 } catch (e : IOException) {
                     Toast.makeText(this,e.message, Toast.LENGTH_SHORT).show()
@@ -76,6 +78,7 @@ class ImageDetailActivity : AppCompatActivity() {
                     startForResult.launch(imageMain)
                 }
             }
+            if(count > 5) imageDetailBinding.btnFotoDetail.isEnabled = false
         }
 
 

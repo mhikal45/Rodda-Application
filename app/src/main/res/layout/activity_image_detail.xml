@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".ui.imagedetail.ImageDetailActivity">
 
     <TextView
@@ -14,8 +15,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/kerusakan_jalan"
-        android:textSize="28sp"
-        android:textStyle="bold"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="25sp"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,8 +27,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto"
         android:text="@string/ambil_foto_kerusakan_jalan_lebih_dekat"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_jalan_detail_title" />
 
@@ -52,6 +55,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
+        android:fontFamily="@font/roboto_medium"
         android:text="@string/tambahkan_foto_detail"
         android:textSize="16sp"
         android:background="@drawable/round_button"
@@ -60,7 +64,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:visibility="invisible"
+        android:enabled="false"
         android:id="@+id/btn_next_form"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -68,6 +72,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="24dp"
         android:text="@string/selanjutnya"
+        android:fontFamily="@font/roboto_medium"
         android:textSize="16sp"
         android:background="@drawable/round_button"
         app:layout_constraintBottom_toBottomOf="parent"

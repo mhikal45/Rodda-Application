@@ -18,6 +18,7 @@ class LoadingDialog(private val mActivity: Activity){
 
     fun startDialog(){
         dialog.setCancelable(false)
+        loadingScreenBinding.btnClear.visibility = View.GONE
         dialog.show()
     }
 
@@ -25,6 +26,7 @@ class LoadingDialog(private val mActivity: Activity){
     fun startReportDialog(text : String){
         loadingScreenBinding.pbLoading.visibility = View.VISIBLE
         loadingScreenBinding.imgState.visibility = View.INVISIBLE
+        loadingScreenBinding.btnClear.visibility = View.GONE
         loadingScreenBinding.tvLoading.text = text
         dialog.setCancelable(false)
         dialog.show()

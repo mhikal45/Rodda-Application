@@ -31,7 +31,7 @@ class ImageMainActivity : AppCompatActivity() {
             Glide.with(this)
                 .load(currentPhotoPath)
                 .into(imageMainBinding.imgMain)
-            imageMainBinding.btnNextDetail.visibility = View.VISIBLE
+            imageMainBinding.btnNextDetail.isEnabled = true
         }
     }
 

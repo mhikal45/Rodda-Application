@@ -41,6 +41,8 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarPageMain.toolbar)
 
+        supportActionBar?.title = "RODDA"
+
         firestore = Firebase.firestore
         fAuth = FirebaseAuth.getInstance()
         val userId = fAuth.currentUser?.uid

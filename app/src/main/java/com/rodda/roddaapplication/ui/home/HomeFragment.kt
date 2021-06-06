@@ -60,12 +60,12 @@ class HomeFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        adapter!!.startListening()
+        adapter.startListening()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        adapter!!.stopListening()
+        adapter.stopListening()
     }
 }
 

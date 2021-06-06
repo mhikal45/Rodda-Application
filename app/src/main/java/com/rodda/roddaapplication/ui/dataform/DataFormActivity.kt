@@ -124,8 +124,10 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
                         val requestLocation = newLocationData()
                         fusedLocationProviderClient.requestLocationUpdates(requestLocation,locationCallback,
                             Looper.myLooper()!!)
+                        activityDataFormBinding.pbLocation.visibility = View.GONE
                     } else {
                         activityDataFormBinding.etLokasi.setText(getAddressLine(location.longitude,location.latitude))
+                        activityDataFormBinding.pbLocation.visibility = View.GONE
                         this.location = getAddressLine(location.longitude,location.latitude)
                     }
                 }
@@ -192,6 +194,7 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_location-> {
                 try {
                     requestPermission()
+                    activityDataFormBinding.pbLocation.visibility = View.VISIBLE
                     getCurrentLocation()
                 } catch (e : Exception) {
                     e.printStackTrace()

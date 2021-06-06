@@ -20,9 +20,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         app:layout_constraintStart_toEndOf="@id/img_mainPhoto"
         app:layout_constraintTop_toTopOf="@+id/img_mainPhoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/roboto"
+        android:textColor="@color/black"
+        android:maxLines="2"
+        android:textSize="14sp"
         tools:text="Nama Tempat" />
 
 
@@ -52,6 +56,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:textSize="12sp"
+        android:fontFamily="@font/roboto"
         app:layout_constraintStart_toEndOf="@id/img_mainPhoto"
         app:layout_constraintTop_toBottomOf="@id/img_cracked"
         app:layout_constraintBottom_toBottomOf="@id/img_mainPhoto"

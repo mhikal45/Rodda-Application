@@ -10,11 +10,13 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.rodda.roddaapplication.databinding.ActivityDetailBinding
 import com.rodda.roddaapplication.model.ResultModel
+import com.rodda.roddaapplication.supp.LoadingDialog
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private lateinit var firestore: FirebaseFirestore
     private lateinit var docID: String
+    private lateinit var loadingDialog: LoadingDialog
 
     companion object{
         const val DOC_ID = "doc_id"
@@ -25,7 +27,14 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.title = "Detail"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         firestore = FirebaseFirestore.getInstance()
+
+        loadingDialog = LoadingDialog(this)
+
+        loadingDialog.startDialog()
+
 
         docID = intent.getStringExtra(DOC_ID).toString()
         Log.d("Doc ID", "Doc Id nya = $docID")
@@ -56,6 +65,7 @@ class DetailActivity : AppCompatActivity() {
                         if(images?.size == 6){
                             imageSize6Load(images, prediction, predictionAcc, location)
                         }
+                        loadingDialog.dismissDialog()
                     }
                 }
             }
