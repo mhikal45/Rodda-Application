@@ -128,7 +128,6 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
                         activityDataFormBinding.etLokasi.setText(getAddressLine(location.longitude,location.latitude))
                         this.location = getAddressLine(location.longitude,location.latitude)
                     }
-                    activityDataFormBinding.pbLocation.visibility = View.GONE
                 }
             } else {
                 Toast.makeText(this,"Please Turn On Your GPS",Toast.LENGTH_SHORT).show()
@@ -153,6 +152,7 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
         val geocoder = Geocoder(this, Locale.getDefault())
         val address = geocoder.getFromLocation(latitude, longitude, 1)
 
+        activityDataFormBinding.pbLocation.visibility = View.GONE
         return address[0].getAddressLine(0)
     }
 
@@ -191,12 +191,13 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
 
              }
             R.id.btn_location-> {
+                activityDataFormBinding.pbLocation.visibility = View.VISIBLE
                 try {
                     requestPermission()
-                    activityDataFormBinding.pbLocation.visibility = View.VISIBLE
                     getCurrentLocation()
                 } catch (e : Exception) {
                     e.printStackTrace()
+                    activityDataFormBinding.pbLocation.visibility = View.GONE
                 }
             }
         }

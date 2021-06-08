@@ -53,5 +53,5 @@
     <string name="kerusakan_jalan">Damaged Road</string>
     <string name="text_in_login">Login to your account using Email and Password</string>
     <string name="text_in_home">Reports</string>
-    <string name="tips_location">Click My Location button to get your current location</string>
+    <string name="tips_location">Click My Location button to get your current location. After Request Permissions, click again</string>
 </resources>
