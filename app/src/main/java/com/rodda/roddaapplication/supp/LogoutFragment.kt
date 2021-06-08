@@ -39,7 +39,7 @@ class LogoutFragment : DialogFragment() {
                 loading.dismissDialog()
                 fAuth.signOut()
                 startActivity(Intent(activity, LoginActivity::class.java))
-                Toast.makeText(activity, "Keluar", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Log Out Success", Toast.LENGTH_SHORT).show()
             }, 2000)
         }
     }
