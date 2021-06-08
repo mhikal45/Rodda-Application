@@ -40,7 +40,7 @@ class HomeAdapter(options: FirestoreRecyclerOptions<ResultModel>) :
             if (result.predictions?.contains("Pothole") == true && result.predictions?.contains("Crack") == false) {
                 binding.imgCracked.setImageResource(R.mipmap.ic_hole)
                 binding.imgCracked.visibility = View.VISIBLE
-            }else if(result.predictions?.contains("Plothole") == true){
+            }else if(result.predictions?.contains("Pothole") == true){
                 binding.imgHole.visibility = View.VISIBLE
             }
             itemView.setOnClickListener{

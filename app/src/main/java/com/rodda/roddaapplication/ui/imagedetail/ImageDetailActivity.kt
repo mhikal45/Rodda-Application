@@ -38,18 +38,21 @@ class ImageDetailActivity : AppCompatActivity() {
             imageDetail.add(currentPhotoPath)
             imageAdapter.addToList(currentPhotoPath)
             imageDetailBinding.btnNextForm.isEnabled = true
+            count++
+        }
+        if(count > 5){
+            imageDetailBinding.btnFotoDetail.isEnabled = false
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        imageDetailBinding = ActivityImageDetailBinding.inflate(layoutInflater)
+        imageDetailBinding = com.rodda.roddaapplication.databinding.ActivityImageDetailBinding.inflate(layoutInflater)
         setContentView(imageDetailBinding.root)
 
         imageAdapter = ImageDetailAdapter()
         imageDetailBinding.rvImgDetail.layoutManager = GridLayoutManager(this,2)
         imageDetailBinding.rvImgDetail.adapter = imageAdapter
-
         imageDetailBinding.btnFotoDetail.setOnClickListener {
             Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {
                     imageMain ->
@@ -64,7 +67,6 @@ class ImageDetailActivity : AppCompatActivity() {
                         storageDir
                     ).apply {
                         currentPhotoPath = absolutePath
-                        count++
                     }
                 } catch (e : IOException) {
                     Toast.makeText(this,e.message, Toast.LENGTH_SHORT).show()
@@ -77,7 +79,6 @@ class ImageDetailActivity : AppCompatActivity() {
                     startForResult.launch(imageMain)
                 }
             }
-            if(count > 5) imageDetailBinding.btnFotoDetail.isEnabled = false
         }
 
 

@@ -11,6 +11,7 @@ import com.rodda.roddaapplication.R
 import com.rodda.roddaapplication.databinding.ActivityLoginBinding
 import com.rodda.roddaapplication.supp.LoadingDialog
 import com.rodda.roddaapplication.ui.um.register.RegistrerFormActivity
+import kotlin.system.exitProcess
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -76,5 +77,10 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         if(fbAuth.currentUser != null){
             startActivity(Intent(this, MainActivity::class.java))
         }
+    }
+
+    override fun onBackPressed() {
+        moveTaskToBack(true)
+        exitProcess(-1)
     }
 }

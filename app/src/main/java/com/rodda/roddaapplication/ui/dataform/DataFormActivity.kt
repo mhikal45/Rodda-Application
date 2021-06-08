@@ -124,12 +124,11 @@ class DataFormActivity : AppCompatActivity(), View.OnClickListener {
                         val requestLocation = newLocationData()
                         fusedLocationProviderClient.requestLocationUpdates(requestLocation,locationCallback,
                             Looper.myLooper()!!)
-                        activityDataFormBinding.pbLocation.visibility = View.GONE
                     } else {
                         activityDataFormBinding.etLokasi.setText(getAddressLine(location.longitude,location.latitude))
-                        activityDataFormBinding.pbLocation.visibility = View.GONE
                         this.location = getAddressLine(location.longitude,location.latitude)
                     }
+                    activityDataFormBinding.pbLocation.visibility = View.GONE
                 }
             } else {
                 Toast.makeText(this,"Please Turn On Your GPS",Toast.LENGTH_SHORT).show()
