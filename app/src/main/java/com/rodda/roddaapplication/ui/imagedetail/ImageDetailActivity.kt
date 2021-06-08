@@ -47,7 +47,7 @@ class ImageDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        imageDetailBinding = com.rodda.roddaapplication.databinding.ActivityImageDetailBinding.inflate(layoutInflater)
+        imageDetailBinding = ActivityImageDetailBinding.inflate(layoutInflater)
         setContentView(imageDetailBinding.root)
 
         imageAdapter = ImageDetailAdapter()
